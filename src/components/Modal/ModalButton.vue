@@ -1,5 +1,5 @@
 <template>
-  <button class="btn modal" @click="modalClick">モーダル</button>
+  <button class="btn modal" @click="modalClick">写真を地図に登録する</button>
 </template>
 
 <script>

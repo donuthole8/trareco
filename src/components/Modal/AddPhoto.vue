@@ -1,30 +1,21 @@
 <template>
   <div class="main">
-
-
     <div class="search-box">
-      <p>SearchBox called</p>
+      <p>AddPhoto called</p>
 
-      <p>観光スポットや店を検索しよう！</p>
-      <form action="#" method="post">
-        <p>検索ワード：<br>
-        <input type="text" name="spot-name"></p>
-        <p><input type="submit" value="検索"></p>
-      </form>
+      <p>写真を選択して下さい</p>
     </div>
   </div>
 </template>
 
-
 <script>
 export default {
-  name: 'SearchBox',
+  name: 'AddPhoto',
   props: {
     msg: String
   }
 }
 </script>
-
 
 <style scoped>
 .main {

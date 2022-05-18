@@ -1,26 +1,32 @@
 <template>
-  <div class="main">
-    <p>PhotoModal called</p>
-
-    <div class="modal-wrap" :class="{ 'is-open': modalSwitch }">
-      <div class="modal">
-        <p class="modal-ttl">{{ modalTtl }}</p>
-        <div class="modal-content">
-          <p>{{ modalContent }}</p>
-        </div>
-        <div class="modal-btn-wrap">
-          <button class="modal-close" @click="modalClose">閉じる</button>
-          <button class="modal-close" @click="addPhoto">写真登録</button>
-        </div>
+  <div class="modal-wrap" :class="{ 'is-open': modalSwitch }">
+    <div class="modal">
+      <p class="modal-ttl">{{ modalTtl }}</p>
+      <div class="modal-content">
+        <p>{{ modalContent }}</p>
+        <AddPhoto></AddPhoto>
+        <SearchBox></SearchBox>
       </div>
-      <div class="modal-overlay" @click="modalClose"></div>
+      <div class="modal-btn-wrap">
+        <button class="modal-close" @click="modalClose">閉じる</button>
+        <button class="modal-close" @click="addPhoto">登録</button>
+      </div>
     </div>
+    <div class="modal-overlay" @click="modalClose"></div>
   </div>
 </template>
 
+
 <script>
+import SearchBox from '../SearchBox.vue';
+import AddPhoto from './AddPhoto.vue';
 
 export default {
+  name: "ModalContent",
+  components: {
+    SearchBox,
+    AddPhoto
+  },
   props: ["modalFlg", "modalTtl", "modalContent"],
   data() {
     return {
@@ -59,12 +65,6 @@ export default {
 
 
 <style lang="scss" scoped>
-.main {
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px dotted #333333;
-  border-radius: 5px;
-}
 .modal {
   width: 85%;
   height: 85%;
