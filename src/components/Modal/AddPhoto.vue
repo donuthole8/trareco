@@ -3,12 +3,7 @@
     <div class="search-box">
       <p>AddPhoto called</p>
 
-      <p>観光スポットや店を検索しよう！</p>
-      <form action="#" method="post">
-        <p>検索ワード：<br>
-        <input type="text" name="spot-name"></p>
-        <p><input type="submit" value="検索"></p>
-      </form>
+      <p>写真を選択して下さい</p>
     </div>
   </div>
 </template>

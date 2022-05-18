@@ -15,6 +15,7 @@
   </div>
 </template>
 
+
 <script>
 export default {
   name: 'SearchBox',
@@ -23,6 +24,7 @@ export default {
   }
 }
 </script>
+
 
 <style scoped>
 .main {

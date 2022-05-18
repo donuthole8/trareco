@@ -2,6 +2,8 @@
   <div class="main">
     <p>modal called</p>
 
+    <p>写真を地図に登録しよう！</p>
+
     <ModalButton 
       :modalFlg="modalFlg" 
       @modal-clicked="modalFlg = $event" 
