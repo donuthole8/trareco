@@ -7,6 +7,8 @@
         <p class="modal-ttl">{{ modalTtl }}</p>
         <div class="modal-content">
           <p>{{ modalContent }}</p>
+          <AddPhoto></AddPhoto>
+          <SearchBox></SearchBox>
         </div>
         <div class="modal-btn-wrap">
           <button class="modal-close" @click="modalClose">閉じる</button>
@@ -19,8 +21,15 @@
 </template>
 
 <script>
+import SearchBox from '../SearchBox.vue';
+import AddPhoto from './AddPhoto.vue';
 
 export default {
+  name: "ModalContent",
+  components: {
+    SearchBox,
+    AddPhoto
+  },
   props: ["modalFlg", "modalTtl", "modalContent"],
   data() {
     return {

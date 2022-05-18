@@ -1,9 +1,7 @@
 <template>
   <div class="main">
-
-
     <div class="search-box">
-      <p>SearchBox called</p>
+      <p>AddPhoto called</p>
 
       <p>観光スポットや店を検索しよう！</p>
       <form action="#" method="post">
@@ -17,7 +15,7 @@
 
 <script>
 export default {
-  name: 'SearchBox',
+  name: 'AddPhoto',
   props: {
     msg: String
   }
