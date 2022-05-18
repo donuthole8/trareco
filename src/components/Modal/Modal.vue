@@ -1,41 +1,43 @@
 <template>
   <div class="main">
-    <p>main called</p>
+    <p>modal called</p>
 
-    <SearchBox></SearchBox>
-
-    <Modal :modalItems="modalItems"></Modal>
+    <ModalButton 
+      :modalFlg="modalFlg" 
+      @modal-clicked="modalFlg = $event" 
+    />
+    
+    <ModalContent
+      :modalFlg="modalFlg"
+      @modal-clicked="modalFlg = $event"
+      :modalTtl="modalItems.modalTtl"
+      :modalContent="modalItems.modalContent"
+    />
+  
   </div>
 </template>
 
 <script>
-import SearchBox from './SearchBox.vue'
-import Modal from './Modal/Modal.vue'
+import ModalButton from './ModalButton.vue'
+import ModalContent from './ModalContent.vue'
 
 export default {
   name: 'Main',
   components: {
-    SearchBox,
-    Modal
+    ModalButton,
+    ModalContent,
   },
+
+  props: ["modalItems"],
   data() {
     return {
-      modalItems: {
-        modalTtl: "写真登録",
-        modalContent: "写真登録をして下さい"
-      }
+      modalFlg: false
     };
   }
 }
 </script>
 
 <style scoped>
-.main {
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px dotted #333333;
-  border-radius: 5px;
-}
 h3 {
   margin: 40px 0 0;
 }

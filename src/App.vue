@@ -30,7 +30,7 @@ export default {
     Header,
     Main,
     Footer,
-  }
+  },
 }
 </script>
 

@@ -1,8 +1,11 @@
 <template>
   <div class="main">
-    <p>観光スポットや店を検索しよう！</p>
+
 
     <div class="search-box">
+      <p>SearchBox called</p>
+
+      <p>観光スポットや店を検索しよう！</p>
       <form action="#" method="post">
         <p>検索ワード：<br>
         <input type="text" name="spot-name"></p>
@@ -14,7 +17,7 @@
 
 <script>
 export default {
-  name: 'Main',
+  name: 'SearchBox',
   props: {
     msg: String
   }
@@ -23,6 +26,12 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.main {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px dotted #333333;
+  border-radius: 5px;
+}
 h3 {
   margin: 40px 0 0;
 }
