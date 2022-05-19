@@ -2,32 +2,16 @@
   <div class="main">
     <p>PhotoModal called</p>
 
-  <div>
-    <ModalButton :modalFlg="modalFlg" @modal-clicked="modalFlg = $event" />
-    <Main
-      :modalFlg="modalFlg"
-      @modal-clicked="modalFlg = $event"
-      :modalTtl="modalItems.modalTtl"
-      :modalContent="modalItems.modalContent"
-    />
+    <div>
+      <ModalButton :modalFlg="modalFlg" @modal-clicked="modalFlg = $event" />
+      <Main
+        :modalFlg="modalFlg"
+        @modal-clicked="modalFlg = $event"
+        :modalTtl="modalItems.modalTtl"
+        :modalContent="modalItems.modalContent"
+      />
+    </div>
   </div>
-  
-  <!-- 
-    <div class="photo-modal">
-      <button class="btn modal">モーダル</button>
-
-      <button @click="showContent">思い出作成</button>
-
-      <div v-show="showContent" id="overlay">
-        <div id="modal">
-          <p>これがモーダルウィンドウです。</p>
-          <p><button @click="addPhoto">登録</button></p>
-          <p><button @click="closeModal">戻る</button></p>
-        </div>
-      </div> -->
-    <!-- </div> -->
-  </div>
-  
 </template>
 
 <script>

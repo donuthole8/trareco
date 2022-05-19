@@ -1,20 +1,29 @@
 <template>
   <div class="footer">
-    <p>footer called</p>
+    <p>trareco@donuthole8</p>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Footer',
-  props: {
-    msg: String
-  }
+  name: 'Footer'
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.footer {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  background-color: #61c1b3;
+  color: #fffcdb;
+  border-radius: 5px;
+}
+p {
+  margin: 10px;
+  padding: 10px;
+
+}
 h3 {
   margin: 40px 0 0;
 }
