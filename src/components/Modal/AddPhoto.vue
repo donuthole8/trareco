@@ -1,8 +1,6 @@
 <template>
   <div class="main">
     <div class="search-box">
-      <p>AddPhoto called</p>
-
       <p>写真を選択して下さい</p>
     </div>
   </div>
@@ -21,7 +19,7 @@ export default {
 .main {
   padding: 10px;
   margin-bottom: 10px;
-  border: 1px dotted #333333;
+  border: 1px dotted #3E5F80;
   border-radius: 5px;
 }
 h3 {

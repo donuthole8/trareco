@@ -1,8 +1,6 @@
 <template>
   <div class="main">
     <div class="search-box">
-      <p>SearchBox called</p>
-
       <p>観光スポットや店を検索しよう！</p>
 
       <p>観光スポット・店名：<br>
@@ -65,7 +63,7 @@ export default {
 .main {
   padding: 10px;
   margin-bottom: 10px;
-  border: 1px dotted #333333;
+  border: 1px dotted #3E5F80;
   border-radius: 5px;
 }
 .btn-search {

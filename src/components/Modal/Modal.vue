@@ -1,7 +1,5 @@
 <template>
   <div class="main">
-    <p>modal called</p>
-
     <p>写真を地図に登録しよう！</p>
 
     <ModalButton 
@@ -15,7 +13,6 @@
       :modalTtl="modalItems.modalTtl"
       :modalContent="modalItems.modalContent"
     />
-  
   </div>
 </template>
 

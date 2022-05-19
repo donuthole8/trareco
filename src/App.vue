@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="body">
     <div>
       <Header id="header"></Header>
     </div>
@@ -8,8 +8,6 @@
       <Main></Main>
     </div>
 
-    <google-map />
-
     <div>
       <Footer></Footer>
     </div>
@@ -17,7 +15,6 @@
 </template>
 
 <script>
-import GoogleMap from './components/GoogleMap.vue'
 import Header from './components/Header.vue'
 import Main from './components/Main.vue'
 import Footer from './components/Footer.vue'
@@ -25,7 +22,6 @@ import Footer from './components/Footer.vue'
 export default {
   name: 'App',
   components: {
-    GoogleMap,
     Header,
     Main,
     Footer,
@@ -33,6 +29,9 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+body {
+  background-color: #F5F5F5;
+  color: #3E5F80;
+}
 </style>

@@ -1,7 +1,5 @@
 <template>
   <div class="main">
-    <p>main called</p>
-
     <SearchBox></SearchBox>
 
     <Modal :modalItems="modalItems"></Modal>
@@ -11,6 +9,8 @@
       <input v-model="message" />
       <button @click="addMessage">メッセージを追加</button>
     </div>
+
+    <google-map />
   
   </div>
 </template>
@@ -18,6 +18,7 @@
 <script>
 import SearchBox from './SearchBox.vue'
 import Modal from './Modal/Modal.vue'
+import GoogleMap from './GoogleMap.vue'
 
 import firebase from "firebase/app";
 import "firebase/database";
@@ -27,7 +28,8 @@ export default {
   name: 'Main',
   components: {
     SearchBox,
-    Modal
+    Modal,
+    GoogleMap,
   },
   data() {
     return {
@@ -56,7 +58,7 @@ export default {
 .main {
   padding: 10px;
   margin-bottom: 10px;
-  border: 1px dotted #333333;
+  border: 1px dotted #3E5F80;
   border-radius: 5px;
 }
 h3 {
