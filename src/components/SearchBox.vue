@@ -7,7 +7,7 @@
 
       <p>観光スポット・店名：<br>
       <input type="text" v-model="keyword"></p>
-      <button @click="showSpots">検索</button>
+      <button class="btn-search" @click="showSpots">検索</button>
 
       <table>
         <tr v-for="spot in filterdSpots" :key="spot.id">
@@ -61,12 +61,25 @@ export default {
 </script>
 
 
-<style scoped>
+<style lang="scss" scoped>
 .main {
   padding: 10px;
   margin-bottom: 10px;
   border: 1px dotted #333333;
   border-radius: 5px;
+}
+.btn-search {
+  background: #61c1b3;
+  color: #fffcdb;
+  font-size: 15px;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: 0.3s;
+  &:hover {
+    opacity: 0.7;
+  }
 }
 h3 {
   margin: 40px 0 0;
