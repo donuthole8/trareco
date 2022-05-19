@@ -1,5 +1,5 @@
 <template>
-  <button class="btn modal" @click="modalClick">写真を地図に登録する</button>
+  <button class="btn-modal" @click="modalClick">写真を地図に登録する</button>
 </template>
 
 <script>
@@ -20,9 +20,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.btn {
-  background: #10afd5;
-  color: #fff;
+.btn-modal {
+  background: #61c1b3;
+  color: #fffcdb;
   font-size: 15px;
   border: none;
   border-radius: 4px;

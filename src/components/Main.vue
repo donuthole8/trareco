@@ -5,12 +5,23 @@
     <SearchBox></SearchBox>
 
     <Modal :modalItems="modalItems"></Modal>
+
+    <div>
+      <h3>database-test</h3>
+      <input v-model="message" />
+      <button @click="addMessage">メッセージを追加</button>
+    </div>
+  
   </div>
 </template>
 
 <script>
 import SearchBox from './SearchBox.vue'
 import Modal from './Modal/Modal.vue'
+
+import firebase from "firebase/app";
+import "firebase/database";
+
 
 export default {
   name: 'Main',
@@ -23,8 +34,20 @@ export default {
       modalItems: {
         modalTtl: "写真登録",
         modalContent: "写真登録をして下さい"
-      }
+      },
+      slack: []
     };
+  },
+  methods: {
+    addMessage() {
+      firebase.database().ref("slack")
+        .push({
+          content: this.message,
+          user: {
+            name: "Baaaaroo"
+          }
+        });
+    }
   }
 }
 </script>

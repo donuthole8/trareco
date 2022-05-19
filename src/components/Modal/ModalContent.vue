@@ -8,8 +8,8 @@
         <SearchBox></SearchBox>
       </div>
       <div class="modal-btn-wrap">
-        <button class="modal-close" @click="modalClose">閉じる</button>
-        <button class="modal-close" @click="addPhoto">登録</button>
+        <button class="close-modal" @click="modalClose">閉じる</button>
+        <button class="close-modal" @click="addPhoto">登録</button>
       </div>
     </div>
     <div class="modal-overlay" @click="modalClose"></div>
@@ -75,7 +75,6 @@ export default {
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s, visibility 0.3s;
-
   &-wrap {
     display: flex;
     align-items: center;
@@ -135,5 +134,18 @@ export default {
       text-align: center;
     }
   }
+}
+.close-modal {
+  background: #61c1b3;
+  color: #fffcdb;
+  font-size: 15px;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: 0.3s;
+  &:hover {
+    opacity: 0.7;
+}
 }
 </style>
