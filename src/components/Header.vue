@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <p>header called</p>
+    <h1>Trareco</h1>
   </div>
 </template>
 
@@ -13,8 +13,19 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.header {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  background-color: #61c1b3;
+  color: #fffcdb;
+  border-radius: 5px;
+}
+h1 {
+  margin: 10px;
+  padding: 10px;
+}
 h3 {
   margin: 40px 0 0;
 }

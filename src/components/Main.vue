@@ -35,12 +35,13 @@ export default {
         modalTtl: "写真登録",
         modalContent: "写真登録をして下さい"
       },
+      slack: []
     };
   },
   methods: {
     addMessage() {
       firebase.database().ref("slack")
-        .set({
+        .push({
           content: this.message,
           user: {
             name: "Baaaaroo"
