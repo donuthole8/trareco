@@ -6,12 +6,11 @@
 
     <div>
       <h3>database-test</h3>
-      <input v-model="message" />
-      <button @click="addMessage">メッセージを追加</button>
+      <!-- <input v-model="message" />
+      <button @click="addMessage">メッセージを追加</button> -->
     </div>
 
-    <google-map />
-  
+    <GoogleMap></GoogleMap>
   </div>
 </template>
 
@@ -19,9 +18,8 @@
 import SearchBox from './SearchBox.vue'
 import Modal from './Modal/Modal.vue'
 import GoogleMap from './GoogleMap.vue'
-
-import firebase from "firebase/app";
-import "firebase/database";
+// import firebase from "firebase/app";
+// import "firebase/database";
 
 
 export default {
@@ -41,15 +39,15 @@ export default {
     };
   },
   methods: {
-    addMessage() {
-      firebase.database().ref("slack")
-        .push({
-          content: this.message,
-          user: {
-            name: "Baaaaroo"
-          }
-        });
-    }
+    // addMessage() {
+    //   firebase.database().ref("slack")
+    //     .push({
+    //       content: this.message,
+    //       user: {
+    //         name: "Baaaaroo"
+    //       }
+    //     });
+    // }
   }
 }
 </script>

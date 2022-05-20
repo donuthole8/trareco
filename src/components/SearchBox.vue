@@ -5,39 +5,89 @@
 
       <p>観光スポット・店名：<br>
       <input type="text" v-model="keyword"></p>
-      <button class="btn-search" @click="showSpots">検索</button>
+      <button class="btn-search" @click="showSpots(keyword)">検索</button>
+      <button class="btn-search" @click="test">表示</button>
 
-      <table>
+      <h3>{{ keyword }}</h3>
+
+
+
+      <p>{{ test }}</p>
+
+      <!-- <table>
         <tr v-for="spot in filterdSpots" :key="spot.id">
             <td v-text="spot.id"></td>
-            <td v-text="spot.name"></td>
+            <td v-text="spot.spot_name"></td>
             <td>
-              <img src="spot.imageUrl" alt="">
+              <img src="spot.image_url" alt="">
             </td>
         </tr>
-      </table>
+      </table> -->
     </div>
   </div>
 </template>
 
 
 <script>
+// import firebase from "firebase/app";
+// import "firebase/database";
+
+import axios from 'axios';
+
 export default {
   name: 'SearchBox',
-  props: {
-    msg: String
-  },
   data() {
     return {
+      test: "test",
       keyword: "",
       spots: [{
-        id: "",
-        name: "",
-        imageUrl: "",
-      }]
+        id: 0,
+        spot_name: "",
+        text: "",
+        image_url: "",
+      }],
     };
   },
+  mounted() {
+    var query = "東京"
+    // データ読み込み
+    const api_url = process.env.VUE_APP_GOOGLE_PLACE_URL + query + "&key=" + process.env.VUE_APP_GOOGLE_MAP_API_KEY;
+  
+    console.log("aaaa: ", api_url)
+
+    axios
+      .get(api_url)
+      .then(response => (
+        this.test = response
+      ))
+  },
   mothods: {
+    // テスト
+    test: function() {
+      console.log("test suc!!!!!!!!!!!!!")
+    },
+
+    // スポット名の検索
+    showSpots: function(keyword) {
+      console.log("------------------")
+      console.log(keyword)
+
+
+      // データ読み込み
+
+
+      // // データをDBに保存
+      // firebase.database().ref("spots")
+      //   .push({
+      //     id: this.id,
+      //     spot_name: this.spot_name,
+      //   })
+      // this.id += 1
+
+      // // 検索ワードの表示
+      // console.log("keyword--->>>", keyword)
+      // this.key_word = keyword
+    },
     computed: {
       // リアルタイム検索
       filterdSpots: function() {
@@ -49,11 +99,7 @@ export default {
           }
         }      
       },
-      // スポット名の検索
-      showSpots: function() {
-
-      }
-    }
+    },
   }
 }
 </script>

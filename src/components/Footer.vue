@@ -1,6 +1,6 @@
 <template>
   <div class="footer">
-    <p>trareco@donuthole8</p>
+    <p>©donuthole8 all rights reserved</p>
   </div>
 </template>
 
