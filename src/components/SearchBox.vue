@@ -8,11 +8,9 @@
       <button class="btn-search" @click="showSpots(keyword)">検索</button>
       <button class="btn-search" @click="test">表示</button>
 
-      <h3>{{ keyword }}</h3>
-
-
-
-      <p>{{ test }}</p>
+      <h2>{{ call }}</h2>
+      <h3>"{{ keyword }}"で検索</h3>
+      <p>{{ spots }}</p>
 
       <!-- <table>
         <tr v-for="spot in filterdSpots" :key="spot.id">
@@ -40,26 +38,45 @@ export default {
     return {
       test: "test",
       keyword: "",
+      call: "",
       spots: [{
         id: 0,
+        place_id: "",
+        address: "",
         spot_name: "",
         text: "",
         image_url: "",
       }],
     };
   },
-  mounted() {
-    var query = "東京"
+  // async mounted() {
+  async beforeMount() {
+    var query = "アボカド"
     // データ読み込み
+    // const api_url = process.env.VUE_APP_GOOGLE_PLACE_URL + this.keyword + "&key=" + process.env.VUE_APP_GOOGLE_MAP_API_KEY;
     const api_url = process.env.VUE_APP_GOOGLE_PLACE_URL + query + "&key=" + process.env.VUE_APP_GOOGLE_MAP_API_KEY;
   
-    console.log("aaaa: ", api_url)
-
-    axios
+    await axios
       .get(api_url)
       .then(response => (
-        this.test = response
+        this.test = response.data.results
       ))
+      .catch(error => {
+        console.log("Error with api", error)
+      })
+
+
+    this.call = "呼ばれた！！"
+
+    if (this.test.length >= 1) {
+      this.test.forEach(el => {
+        this.spots.spot_name.push(el.name)
+        this.spots.address = el.address
+        this.spots.image_url = el.photos.html_attributions
+        this.spots.place_id = el.place_id
+        console.log("leeeeeeeeeen",this.test.length)
+      })
+    }
   },
   mothods: {
     // テスト
