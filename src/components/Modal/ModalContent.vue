@@ -18,7 +18,7 @@
 
 
 <script>
-import SearchBox from '../SearchBox.vue';
+import SearchBox from '../SearchBox/SearchBox.vue';
 import AddPhoto from './AddPhoto.vue';
 
 export default {

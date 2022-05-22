@@ -1,8 +1,8 @@
 <template>
-<div>
-  <h2>Google Map</h2>
-  <div ref="map" style="height: 500px; width: 800px"></div>
-</div>
+  <div>
+    <h2>Google Map</h2>
+    <div class="google-map" ref="map"></div>
+  </div>
 </template>
 
 <script>
@@ -14,7 +14,7 @@ export default {
   },
   mounted() {
     const script = document.createElement('script');
-    script.src = process.env.VUE_APP_GOOGLE_MAP_API_KEY;
+    script.src = process.env.VUE_APP_GOOGLE_MAPS_URL + process.env.VUE_APP_GOOGLE_API_KEY;
     script.async = true;
     document.head.appendChild(script);
     let timer = setInterval(() => {
@@ -33,3 +33,14 @@ export default {
   },
 };
 </script>
+
+<style>
+.google-map {
+  margin: auto;
+  padding: 0.5em 1em;
+  border: solid 10px #61c1b3;
+  border-radius: 5px;
+  height: 500px;
+  width: 750px;
+}
+</style>

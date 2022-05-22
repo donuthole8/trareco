@@ -1,21 +1,20 @@
 <template>
   <div class="main">
-    <div class="search-box">
-      <p>写真を選択して下さい</p>
-    </div>
+    <p>{{ spot_name }}</p>
+    <p>{{ address }}</p>
+    <img src="image_url" alt="no-image">
+    <div style="background-image : url(image_url)">image</div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'AddPhoto',
-  props: {
-    msg: String
-  }
+  name: 'ResultCard',
+  props: ["spot_name", "address", "image_url"]
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .main {
   padding: 10px;
   margin-bottom: 10px;
