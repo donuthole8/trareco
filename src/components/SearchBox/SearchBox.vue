@@ -16,7 +16,7 @@
             :spot_name="result.spot_name"
             :address="result.address"
             :image_url="result.image_url"
-            @spot-name="spot_name = $event"
+            @spot-name="$listeners['spot-name']"
           ></ResultCard>
 
         </tr>
@@ -45,7 +45,7 @@ export default {
       }],
       response: "",
       image: [],
-      // spot_name: ""
+      spot_name: ""
     }
   },
   methods: {
@@ -90,10 +90,6 @@ export default {
       return photos_api_url
     }
   },
-  mounted: {
-    // 親にスポット名の受け渡し
-    // this.$emit("spot-name", this.spot_name);
-  }
 }
 </script>
 

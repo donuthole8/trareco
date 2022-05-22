@@ -15,6 +15,7 @@
         <SearchBox
           @clicked-spot="spot_name = $event"
         ></SearchBox>
+
       </div>
       <div class="modal-btn-wrap">
         <button class="btn-modal-content" @click="modalClose">閉じる</button>
@@ -29,7 +30,6 @@
 <script>
 import AddPhoto from './AddPhoto.vue';
 import SearchBox from '../SearchBox/SearchBox.vue';
-import ResultCard from '../SearchBox/ResultCard.vue';
 import firebase from "firebase/app";
 import "firebase/database";
 
@@ -39,14 +39,13 @@ export default {
     AddPhoto,
     // ModalText,
     SearchBox,
-    ResultCard
   },
   props: ["modalFlg"],
   data() {
     return {
       childModalFlg: this.modalFlg,
       // travel_record: [],
-      // spot_name: "",
+      spot_name: "",
       // text: "",
       // image_url: "",
     };
@@ -82,7 +81,7 @@ export default {
         .push({
           id: id,
           text: text,
-          date: datetime.now()
+          date: new Date()
         })
     },
   },

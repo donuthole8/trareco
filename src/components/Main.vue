@@ -4,12 +4,6 @@
 
     <Modal></Modal>
 
-    <div>
-      <h3>database-test</h3>
-      <!-- <input v-model="message" />
-      <button @click="addMessage">メッセージを追加</button> -->
-    </div>
-
     <GoogleMap></GoogleMap>
   </div>
 </template>
@@ -31,17 +25,6 @@ export default {
     return {
       slack: []
     };
-  },
-  methods: {
-    // addMessage() {
-    //   firebase.database().ref("slack")
-    //     .push({
-    //       content: this.message,
-    //       user: {
-    //         name: "Baaaaroo"
-    //       }
-    //     });
-    // }
   }
 }
 </script>
