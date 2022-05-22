@@ -12,10 +12,11 @@
 
       <table>
         <tr v-for="result in search_results" :key="result.place_id">
-          <p>{{ result.spot_name }}</p>
-          <img src=result.image_url alt="no-image">
-
-          <SpotCard></SpotCard>
+          <SpotCard
+            :spot_name="result.spot_name"
+            :address="result.address"
+            :image_url="result.image_url"
+          ></SpotCard>
 
         </tr>
       </table>
@@ -24,7 +25,7 @@
 </template>
 
 <script>
-import SpotCard from './SpotCard.vue';
+import SpotCard from './ResultCard.vue';
 import axios from 'axios';
 
 export default {
@@ -41,7 +42,8 @@ export default {
         address: "",
         image_url: "",
       }],
-      response: ""
+      response: "",
+      image: []
     }
   },
   methods: {
@@ -57,8 +59,7 @@ export default {
       await axios
         .get(places_api_url)
         .then(response => (
-          this.response = response.data.results,
-          console.log("api-res", response.data.results)
+          this.response = response.data.results
         ))
         .catch(error => {
           console.log("Error with google places api", error)
@@ -67,21 +68,34 @@ export default {
       // レスポンスを配列に格納
       if (this.response.length >= 1) {
         this.response.forEach(res => {
+          // this.getImageUrl(res.photos[0].photo_reference)
           this.search_results.push({
             "place_id": res.place_id, 
             "spot_name": res.name, 
-            "address": res.address, 
+            "address": res.formatted_address, 
             "image_url": this.getImageUrl(res.photos[0].photo_reference)
+            // "image_url": this.image
           })
         })
       }
     },
-
-
     // PlacesAPIのレスポンスから画像URLを取得
     getImageUrl: function(photo_ref) {
       // Photos APIのURL
       const photos_api_url = process.env.VUE_APP_GOOGLE_PHOTOS_URL + photo_ref + "&key=" + process.env.VUE_APP_GOOGLE_API_KEY
+
+      // // Photos APIのレスポンス
+      // await axios
+      //   .get(photos_api_url)
+      //   .then(response => (
+      //     this.image = response
+      //     // return response.url
+      //   ))
+      //   .catch(error => {
+      //     console.log("Error with google places api", error)
+      //   })
+      
+      // return this.image
 
       return photos_api_url
     }

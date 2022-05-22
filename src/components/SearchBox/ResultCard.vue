@@ -1,28 +1,15 @@
 <template>
   <div class="main">
-    <div>data dummy</div>
-    <!-- <td v-text="result.spot_name"></td>
-    <td>
-      <img src=result.image_url alt="">
-    </td> -->
+    <p>{{ spot_name }}</p>
+    <p>{{ address }}</p>
+    <img src="image_url" alt="no-image">
   </div>
 </template>
 
 <script>
 export default {
-  name: 'SearchBox',
-  data() {
-    return {
-      keyword: "宮島",
-      search_results: [{
-        place_id: "",
-        spot_name: "",
-        address: "",
-        image_url: "",
-      }],
-      response: []
-    }
-  },
+  name: 'ResultCard',
+  props: ["spot_name", "address", "image_url"]
 }
 </script>
 
