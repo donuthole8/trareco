@@ -11,8 +11,10 @@
           <p>簡単な説明を追加しよう！</p>
           <input type="text" v-model="text" placeholder="写真についてひとこと">
         </div>
-        
-        <SearchBox></SearchBox>
+
+        <SearchBox
+          @clicked-spot="spot_name = $event"
+        ></SearchBox>
       </div>
       <div class="modal-btn-wrap">
         <button class="btn-modal-content" @click="modalClose">閉じる</button>
@@ -27,6 +29,7 @@
 <script>
 import AddPhoto from './AddPhoto.vue';
 import SearchBox from '../SearchBox/SearchBox.vue';
+import ResultCard from '../SearchBox/ResultCard.vue';
 import firebase from "firebase/app";
 import "firebase/database";
 
@@ -36,6 +39,7 @@ export default {
     AddPhoto,
     // ModalText,
     SearchBox,
+    ResultCard
   },
   props: ["modalFlg"],
   data() {
