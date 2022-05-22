@@ -5,12 +5,13 @@
 
       <p>観光スポット・店名：<br>
       <input type="text" v-model="keyword"></p>
-      <button class="btn-search" @click="showSpots(keyword)">検索</button>
-      <button class="btn-search" @click="test">表示</button>
+      <!-- <button class="btn-search" @click="showSpots(keyword)">検索</button>
+      <button class="btn-search" v-on:click.native="pushhh">表示</button> -->
+      <button @click="click">aaa</button>
+
 
       <h2>{{ call }}</h2>
       <h3>"{{ keyword }}"で検索</h3>
-      <p>{{ spots }}</p>
 
       <!-- <table>
         <tr v-for="spot in filterdSpots" :key="spot.id">
@@ -21,6 +22,7 @@
             </td>
         </tr>
       </table> -->
+
     </div>
   </div>
 </template>
@@ -30,12 +32,13 @@
 // import firebase from "firebase/app";
 // import "firebase/database";
 
-import axios from 'axios';
+// import axios from 'axios';
 
 export default {
   name: 'SearchBox',
   data() {
     return {
+      pohot_test: "tesss",
       test: "test",
       keyword: "",
       call: "",
@@ -46,52 +49,49 @@ export default {
         spot_name: "",
         text: "",
         image_url: "",
+        image_ref: ""
       }],
     };
   },
   // async mounted() {
-  async beforeMount() {
-    var query = "アボカド"
-    // データ読み込み
-    // const api_url = process.env.VUE_APP_GOOGLE_PLACE_URL + this.keyword + "&key=" + process.env.VUE_APP_GOOGLE_MAP_API_KEY;
-    const api_url = process.env.VUE_APP_GOOGLE_PLACE_URL + query + "&key=" + process.env.VUE_APP_GOOGLE_MAP_API_KEY;
+  // async beforeMount() {
+  //   var query = "アボカド"
+  //   var photoreference = "Aap_uECc6IfCpMeh8QTl2bxP9n-xCuF4Ts2KomlWkRTwdlOuBnz5RGMtuUWjtAELuq4oOklWjUQMRcprT-NjTRbqkgGFVAkJZ0GxkVWv4bvmlr0shJOMHsU_BOXnnP7gCxPMRf-tObIACFuyo0aKQLVKPoi5Vy4xXtiwU0Og1a-zI9TGvxLz"
+  //   // データ読み込み
+  //   const places_api_url = process.env.VUE_APP_GOOGLE_PLACES_URL + query + "&key=" + process.env.VUE_APP_GOOGLE_API_KEY;
+  //   console.log(places_api_url)
+  //   const photos_api_url = process.env.VUE_APP_GOOGLE_PHOTOS_URL + photoreference + "&key=" + process.env.VUE_APP_GOOGLE_API_KEY
   
-    await axios
-      .get(api_url)
-      .then(response => (
-        this.test = response.data.results
-      ))
-      .catch(error => {
-        console.log("Error with api", error)
-      })
-
-
-    this.call = "呼ばれた！！"
-
-    if (this.test.length >= 1) {
-      this.test.forEach(el => {
-        this.spots.spot_name.push(el.name)
-        this.spots.address = el.address
-        this.spots.image_url = el.photos.html_attributions
-        this.spots.place_id = el.place_id
-        console.log("leeeeeeeeeen",this.test.length)
-      })
-    }
-  },
+  //   await axios
+  //     .get(places_api_url)
+  //     .then(response => (
+  //       this.test = response.data.results[0]
+  //     ))
+  //     .catch(error => {
+  //       console.log("Error with google places api", error)
+  //     })
+    
+  //   if (this.test.length >= 1) {
+  //     this.test.forEach(el => {
+  //       console.log("el",el)
+  //       this.spots.push({
+  //         "id": 0, 
+  //         "place_id": el.place_id, 
+  //         "address": el.address, 
+  //         "spot_name": el.name, 
+  //         "text": "tes", 
+  //         "image_url": photos_api_url
+  //       })
+  //     })
+  //   }
+  // },
   mothods: {
-    // テスト
-    test: function() {
-      console.log("test suc!!!!!!!!!!!!!")
-    },
-
-    // スポット名の検索
-    showSpots: function(keyword) {
-      console.log("------------------")
-      console.log(keyword)
-
+    // // スポット名の検索
+    // showSpots: function(keyword) {
+    //   console.log("------------------")
+    //   console.log(keyword)
 
       // データ読み込み
-
 
       // // データをDBに保存
       // firebase.database().ref("spots")
@@ -104,19 +104,7 @@ export default {
       // // 検索ワードの表示
       // console.log("keyword--->>>", keyword)
       // this.key_word = keyword
-    },
-    computed: {
-      // リアルタイム検索
-      filterdSpots: function() {
-        var spots = [];
-        for (var i in this.spots) {
-          var spot = this.spots[i];
-          if (spot.name.indexOf(this.keyword) !== -1) {
-            spots.push(spot)
-          }
-        }      
-      },
-    },
+    // },
   }
 }
 </script>

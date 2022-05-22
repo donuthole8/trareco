@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import SearchBox from './SearchBox.vue'
+import SearchBox from './SearchBox/SearchBox.vue'
 import Modal from './Modal/Modal.vue'
 import GoogleMap from './GoogleMap.vue'
 // import firebase from "firebase/app";

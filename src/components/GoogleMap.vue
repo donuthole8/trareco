@@ -14,7 +14,7 @@ export default {
   },
   mounted() {
     const script = document.createElement('script');
-    script.src = process.env.VUE_APP_GOOGLE_MAP_URL + process.env.VUE_APP_GOOGLE_MAP_API_KEY;
+    script.src = process.env.VUE_APP_GOOGLE_MAPS_URL + process.env.VUE_APP_GOOGLE_API_KEY;
     script.async = true;
     document.head.appendChild(script);
     let timer = setInterval(() => {
