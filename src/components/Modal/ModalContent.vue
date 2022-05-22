@@ -1,15 +1,22 @@
 <template>
   <div class="modal-wrap" :class="{ 'is-open': modalSwitch }">
     <div class="modal">
-      <p class="modal-ttl">{{ modalTtl }}</p>
-      <div class="modal-content">
-        <p>{{ modalContent }}</p>
+      <p class="modal-ttl">写真登録</p>
+      <div class="modal-main">
+        <p>写真を地図上のスポットに登録しよう！</p>
         <AddPhoto></AddPhoto>
+
+        <!-- <ModalText></ModalText> -->
+        <div class="modal-text">
+          <p>簡単な説明を追加しよう！</p>
+          <input type="text" v-model="text" placeholder="写真についてひとこと">
+        </div>
+        
         <SearchBox></SearchBox>
       </div>
       <div class="modal-btn-wrap">
-        <button class="close-modal" @click="modalClose">閉じる</button>
-        <button class="close-modal" @click="addPhoto">登録</button>
+        <button class="btn-modal-content" @click="modalClose">閉じる</button>
+        <button class="btn-modal-content" @click="addPhoto(text)">登録</button>
       </div>
     </div>
     <div class="modal-overlay" @click="modalClose"></div>
@@ -18,28 +25,30 @@
 
 
 <script>
-import SearchBox from '../SearchBox/SearchBox.vue';
 import AddPhoto from './AddPhoto.vue';
+import SearchBox from '../SearchBox/SearchBox.vue';
+import firebase from "firebase/app";
+import "firebase/database";
 
 export default {
   name: "ModalContent",
   components: {
+    AddPhoto,
+    // ModalText,
     SearchBox,
-    AddPhoto
   },
-  props: ["modalFlg", "modalTtl", "modalContent"],
+  props: ["modalFlg"],
   data() {
     return {
       childModalFlg: this.modalFlg,
+      // travel_record: [],
+      // spot_name: "",
+      // text: "",
+      // image_url: "",
     };
   },
   methods: {
-    modalClose() {
-      if (this.childModalFlg) {
-        this.childModalFlg = false;
-        this.$emit("modal-clicked", this.childModalFlg);
-      }
-    },
+    // モーダルフラグの変更
     childModalSwitch() {
       if (this.modalFlg) {
         this.childModalFlg = true;
@@ -48,11 +57,29 @@ export default {
       }
       return this.childModalFlg;
     },
-    addPhoto() {
+    // モーダルを閉じる
+    modalClose() {
       if (this.childModalFlg) {
         this.childModalFlg = false;
         this.$emit("modal-clicked", this.childModalFlg);
       }
+    },
+    // 思い出記録のDB追加
+    addPhoto(text) {
+      // id, spot-name, text, image-url, date -> travel-record
+      // とりあえずid,text,dateあたりを挿入できれば良い
+      
+      // 最新のレコードのidを取得
+      var id = 0
+      id += 1
+
+      console.log("inputed-txt", text)
+      firebase.database().ref("travel-record")
+        .push({
+          id: id,
+          text: text,
+          date: datetime.now()
+        })
     },
   },
   computed: {
@@ -126,7 +153,7 @@ export default {
   &-ttl {
     font-size: 20px;
   }
-  &-content {
+  &-main {
     margin-bottom: 30px;
   }
   &-btn {
@@ -135,7 +162,7 @@ export default {
     }
   }
 }
-.close-modal {
+.btn-modal-content {
   background: #61c1b3;
   color: #fffcdb;
   font-size: 15px;

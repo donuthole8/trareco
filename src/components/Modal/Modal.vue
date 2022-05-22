@@ -10,8 +10,6 @@
     <ModalContent
       :modalFlg="modalFlg"
       @modal-clicked="modalFlg = $event"
-      :modalTtl="modalItems.modalTtl"
-      :modalContent="modalItems.modalContent"
     />
   </div>
 </template>
@@ -26,8 +24,6 @@ export default {
     ModalButton,
     ModalContent,
   },
-
-  props: ["modalItems"],
   data() {
     return {
       modalFlg: false

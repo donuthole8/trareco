@@ -1,17 +1,14 @@
 <template>
   <div class="main">
     <div class="search-box">
-      <p>写真を選択して下さい</p>
+      <p>登録する写真を選択しよう！</p>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'AddPhoto',
-  props: {
-    msg: String
-  }
+  name: 'AddPhoto'
 }
 </script>
 

@@ -3,7 +3,7 @@
     <p>観光スポットや店を検索しよう！</p>
 
     <p>観光スポット・店名：<br>
-    <input type="text" v-model="keyword"></p>
+    <input type="text" v-model="keyword" placeholder="観光スポット・店名"></p>
     
     <button @click="showSearchResults(keyword)" class="btn-search">検索</button>
 

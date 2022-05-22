@@ -1,8 +1,8 @@
 <template>
   <div class="main">
-    <SearchBox></SearchBox>
+    <!-- <SearchBox></SearchBox> -->
 
-    <Modal :modalItems="modalItems"></Modal>
+    <Modal></Modal>
 
     <div>
       <h3>database-test</h3>
@@ -15,26 +15,20 @@
 </template>
 
 <script>
-import SearchBox from './SearchBox/SearchBox.vue'
+// import SearchBox from './SearchBox/SearchBox.vue'
 import Modal from './Modal/Modal.vue'
 import GoogleMap from './GoogleMap.vue'
-// import firebase from "firebase/app";
-// import "firebase/database";
 
 
 export default {
   name: 'Main',
   components: {
-    SearchBox,
+    // SearchBox,
     Modal,
     GoogleMap,
   },
   data() {
     return {
-      modalItems: {
-        modalTtl: "写真登録",
-        modalContent: "写真登録をして下さい"
-      },
       slack: []
     };
   },
