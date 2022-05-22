@@ -7,20 +7,19 @@
     
     <button @click="showSearchResults(keyword)" class="btn-search">検索</button>
 
-    <!-- TODO: 未検索状態で隠せるように -->
-    <h3>"{{ keyword }}"の検索結果</h3>
-    <!-- <p>{{ this.response }}</p> -->
+    <div class="result"  v-if="search_results[0].place_id != ''">
+      <h3>"{{ keyword }}"の検索結果</h3>
 
-    <!-- TODO: コンポーネント化 -->
-    <table>
-      <tr v-for="result in search_results" :key="result.place_id">
-        <p>{{ result.spot_name }}</p>
-        <img src=result.image_url alt="no-image">
+      <table>
+        <tr v-for="result in search_results" :key="result.place_id">
+          <p>{{ result.spot_name }}</p>
+          <img src=result.image_url alt="no-image">
 
-        <SpotCard></SpotCard>
+          <SpotCard></SpotCard>
 
-      </tr>
-    </table>
+        </tr>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -48,6 +47,9 @@ export default {
   methods: {
     // PlacesAPIからの検索結果を表示
     showSearchResults:async function(keyword) {
+      // 配列の初期化
+      this.search_results.splice(0)
+
       // Places APIのURL
       const places_api_url = process.env.VUE_APP_GOOGLE_PLACES_URL + keyword + "&key=" + process.env.VUE_APP_GOOGLE_API_KEY;
     
@@ -61,11 +63,6 @@ export default {
         .catch(error => {
           console.log("Error with google places api", error)
         })
-      
-      // 初期値の空配列を削除
-      if (this.search_results[0].place_id == "") {
-        this.search_results.shift()
-      }
 
       // レスポンスを配列に格納
       if (this.response.length >= 1) {
@@ -79,6 +76,8 @@ export default {
         })
       }
     },
+
+
     // PlacesAPIのレスポンスから画像URLを取得
     getImageUrl: function(photo_ref) {
       // Photos APIのURL
