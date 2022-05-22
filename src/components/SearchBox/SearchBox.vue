@@ -68,34 +68,22 @@ export default {
       // レスポンスを配列に格納
       if (this.response.length >= 1) {
         this.response.forEach(res => {
-          // this.getImageUrl(res.photos[0].photo_reference)
           this.search_results.push({
             "place_id": res.place_id, 
             "spot_name": res.name, 
-            "address": res.formatted_address, 
+            "address": res.formatted_address.substring(13), 
             "image_url": this.getImageUrl(res.photos[0].photo_reference)
-            // "image_url": this.image
           })
         })
       }
     },
     // PlacesAPIのレスポンスから画像URLを取得
     getImageUrl: function(photo_ref) {
+      // TODO: アイコン画像の場合は容量オーバーによるエラーなので403エラーの場合の対処
+      // TODO: 400エラーの場合もある
+
       // Photos APIのURL
       const photos_api_url = process.env.VUE_APP_GOOGLE_PHOTOS_URL + photo_ref + "&key=" + process.env.VUE_APP_GOOGLE_API_KEY
-
-      // // Photos APIのレスポンス
-      // await axios
-      //   .get(photos_api_url)
-      //   .then(response => (
-      //     this.image = response
-      //     // return response.url
-      //   ))
-      //   .catch(error => {
-      //     console.log("Error with google places api", error)
-      //   })
-      
-      // return this.image
 
       return photos_api_url
     }

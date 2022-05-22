@@ -1,9 +1,8 @@
 <template>
   <div class="main">
-    <p>{{ spot_name }}</p>
-    <p>{{ address }}</p>
-    <img src="image_url" alt="no-image">
-    <div style="background-image : url(image_url)">image</div>
+    <p>場所名：{{ spot_name }}</p>
+    <p>住所：{{ address }}</p>
+    <img :src="image_url" width=200 alt="no-img">
   </div>
 </template>
 
