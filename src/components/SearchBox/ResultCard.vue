@@ -3,6 +3,7 @@
     <p>{{ spot_name }}</p>
     <p>{{ address }}</p>
     <img src="image_url" alt="no-image">
+    <div style="background-image : url(image_url)">image</div>
   </div>
 </template>
 
