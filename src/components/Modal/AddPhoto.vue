@@ -27,7 +27,7 @@ export default {
       const file = this.$refs.preview.files[0];
       this.photo_url = URL.createObjectURL(file);
       this.$refs.preview.value = "";
-
+      this.$emit("photo-upload", file)
     },
     // プレビューのキャンセル
     deletePreview: function() {

@@ -4,7 +4,9 @@
       <p class="modal-ttl">写真登録</p>
       <div class="modal-main">
         <p>写真を地図上のスポットに登録しよう！</p>
-        <AddPhoto></AddPhoto>
+        <AddPhoto
+          @photo-upload="file = $emit"
+        ></AddPhoto>
 
         <!-- <ModalText></ModalText> -->
         <div class="wrapper">
@@ -50,7 +52,7 @@ export default {
       // travel_record: [],
       spot_name: "",
       text: "",
-      // image_url: "",
+      // photo_url: "",
       latest_id: 0
     };
   },
@@ -71,11 +73,20 @@ export default {
         this.$emit("modal-clicked", this.childModalFlg);
       }
     },
-    // 思い出記録のDB追加
     addPhoto(spot_name, text) {
-      // id, spot-name, text, image-url, date -> travel-record
+      // 思い出記録のDB追加
+      // id, spot-name, text, photo-url, date -> travel-record
       // とりあえずid,text,dateあたりを挿入できれば良い
       
+      // 写真をDBに保存
+      // const file = {name: "aaa"}
+      const storageRef = firebase.storage().ref("images/" + this.file.name)
+
+      storageRef.put(this.file).then(() => {
+        console.log("uploaddd!!!!!")
+      })
+
+
       // 最新のレコードのidを取得
       // var id = this.getLatestId()
       var id = 0
