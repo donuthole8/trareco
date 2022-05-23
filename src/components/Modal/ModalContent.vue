@@ -12,8 +12,10 @@
           <input type="text" v-model="text" placeholder="写真についてひとこと">
         </div>
 
+        <p v-if="spot_name != ''">{{ spot_name }}が選択されました</p>
+        <p>{{ spot_name }}が選択されました</p>
         <SearchBox
-          @clicked-spot="spot_name = $event"
+          @spot-name="spot_name = $event"
         ></SearchBox>
 
       </div>
@@ -32,6 +34,7 @@ import AddPhoto from './AddPhoto.vue';
 import SearchBox from '../SearchBox/SearchBox.vue';
 import firebase from "firebase/app";
 import "firebase/database";
+import axios from 'axios';
 
 export default {
   name: "ModalContent",
@@ -46,8 +49,9 @@ export default {
       childModalFlg: this.modalFlg,
       // travel_record: [],
       spot_name: "",
-      // text: "",
+      text: "",
       // image_url: "",
+      latest_id: 0
     };
   },
   methods: {
@@ -73,10 +77,11 @@ export default {
       // とりあえずid,text,dateあたりを挿入できれば良い
       
       // 最新のレコードのidを取得
+      // var id = this.getLatestId()
       var id = 0
       id += 1
 
-      console.log("inputed-txt", text)
+      // console.log("inputed-txt", text)
       firebase.database().ref("travel-record")
         .push({
           id: id,
@@ -84,6 +89,21 @@ export default {
           date: new Date()
         })
     },
+    // 最新のレコードのidを取得
+    getLatestId:async function() {
+      await axios.get(process.env.VUE_APP_TRAVEL_RECORD_URL).then((
+        result => {
+          console.log(result)
+          // this.latest_id = max(result.data.id)
+        }
+      ))
+
+      // const db = firebase.firestore()
+
+      // db.collection("travel-record").where("id", "max").get(
+      //   .then(())
+      // )
+    }
   },
   computed: {
     modalSwitch() {
@@ -96,6 +116,8 @@ export default {
 
 <style lang="scss" scoped>
 .modal {
+  overflow: auto;
+  overflow: scroll;
   width: 85%;
   height: 85%;
   background: #fff;

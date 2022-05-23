@@ -7,20 +7,23 @@
     <button @click="showSearchResults(keyword)" class="btn-search">検索</button>
 
     <div class="result" v-if="search_results[0].place_id != ''">
-      <h3>"{{ keyword }}"の検索結果</h3>
-      <p>思い出を記録する場所を選ぼう！</p>
+      <h3>"{{ keyword }}"の検索結果 {{ search_results.length }}件</h3>
+      <p v-if="search_results.length == 0">検索結果がありません</p>
 
-      <table>
-        <tr v-for="result in search_results" :key="result.place_id">
-          <ResultCard
-            :spot_name="result.spot_name"
-            :address="result.address"
-            :image_url="result.image_url"
-            @spot-name="$listeners['spot-name']"
-          ></ResultCard>
+      <div v-if="search_results.length != 0">
+        <p>思い出を記録する場所を選ぼう！</p>
 
-        </tr>
-      </table>
+        <table>
+          <tr v-for="result in search_results" :key="result.place_id">
+            <ResultCard
+              :spot_name="result.spot_name"
+              :address="result.address"
+              :image_url="result.image_url"
+              @spot-name="$listeners['spot-name']"
+            ></ResultCard>
+          </tr>
+        </table>
+      </div>
     </div>
   </div>
 </template>
