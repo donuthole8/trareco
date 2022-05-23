@@ -9,7 +9,6 @@
         <div class="preview-img-close" @click="deletePreview">✕</div>
         <img :src="photo_url" alt="no-img" width="200" class="photo">
       </div>
-
     </div>
   </div>
 </template>

@@ -1,16 +1,10 @@
 <template>
-  <div class="body">
-    <div>
-      <Header></Header>
-    </div>
+  <div class="app">
+    <Header></Header>
 
-    <div>
-      <Main></Main>
-    </div>
+    <Main></Main>
 
-    <div>
-      <Footer></Footer>
-    </div>
+    <Footer></Footer>
   </div>
 </template>
 
@@ -33,5 +27,8 @@ export default {
 body {
   background-color: #F5F5F5;
   color: #3E5F80;
+}
+.app {
+  background-color: #F5F5F5;
 }
 </style>

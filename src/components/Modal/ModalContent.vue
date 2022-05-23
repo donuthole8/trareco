@@ -11,8 +11,7 @@
           <p>簡単な説明を追加しよう！</p>
           <input type="text" v-model="text" placeholder="写真についてひとこと">
 
-          <p v-if="spot_name != ''">{{ spot_name }}が選択されました</p>
-          <p>{{ spot_name }}が選択されました</p>
+          <p v-if="spot_name != ''">"{{ spot_name }}"が選択されました</p>
         </div>
 
         <SearchBox

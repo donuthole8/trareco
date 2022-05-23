@@ -15,10 +15,13 @@
 
         <table>
           <tr v-for="result in search_results" :key="result.place_id">
+            <!-- <ResultCard v-bind:class="{'selected-card': selected_id!=''}" -->
             <ResultCard
+              :place_id="result.place_id"
               :spot_name="result.spot_name"
               :address="result.address"
               :image_url="result.image_url"
+              @selected-id="selected_id = $event"
               @spot-name="$listeners['spot-name']"
             ></ResultCard>
           </tr>
@@ -43,7 +46,8 @@ export default {
       search_results: [],
       response: "",
       image: [],
-      spot_name: ""
+      spot_name: "",
+      selected_id: ""
     }
   },
   methods: {
@@ -110,6 +114,9 @@ export default {
   &:hover {
     opacity: 0.7;
   }
+}
+.selected-card {
+  background-color: lightgreen;
 }
 h3 {
   margin: 40px 0 0;

@@ -21,11 +21,6 @@ export default {
     Modal,
     GoogleMap,
   },
-  data() {
-    return {
-      slack: []
-    };
-  }
 }
 </script>
 
