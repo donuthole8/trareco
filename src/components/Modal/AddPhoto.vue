@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <div class="wrapper">
     <div class="search-box">
       <p>登録する写真を選択しよう！</p>
 
@@ -39,38 +39,5 @@ export default {
 </script>
 
 <style scoped>
-.main {
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px dotted #3E5F80;
-  border-radius: 5px;
-}
-.preview-img-wrapper {
-  position: relative;
-}
-.preview-img-close {
-  position: absolute;
-  cursor: pointer;
-  background-color: white;
-  color: coral;
-  padding: 3px;
-  border-radius: 2px;
-}
-.photo {
-  margin: 10px;
-}
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+@import "../../styles.scss"
 </style>

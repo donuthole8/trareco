@@ -35,12 +35,5 @@ export default {
 </script>
 
 <style>
-.google-map {
-  margin: auto;
-  padding: 0.5em 1em;
-  border: solid 10px #61c1b3;
-  border-radius: 5px;
-  height: 500px;
-  width: 750px;
-}
+@import "../styles.scss"
 </style>

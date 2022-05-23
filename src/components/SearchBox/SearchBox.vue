@@ -1,12 +1,13 @@
 <template>
-  <div class="main">
+  <div class="wrapper">
     <p>観光スポットや店を検索しよう！</p>
 
     <p>観光スポット・店名：<br>
     <input type="text" v-model="keyword" placeholder="観光スポット・店名"></p>    
-    <button @click="showSearchResults(keyword)" class="btn-search">検索</button>
+    <button @click="showSearchResults(keyword)" class="btn">検索</button>
 
-    <div class="result" v-if="search_results != null">
+    <!-- TODO: 0件でも表示されてしまう -->
+    <div class="result" v-if="search_results != []">
       <h3>"{{ keyword }}"の検索結果 {{ search_results.length }}件</h3>
       <p v-if="search_results.length == 0">検索結果がありません</p>
 
@@ -96,40 +97,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.main {
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px dotted #3E5F80;
-  border-radius: 5px;
-}
-.btn-search {
-  background: #61c1b3;
-  color: #fffcdb;
-  font-size: 15px;
-  border: none;
-  border-radius: 4px;
-  padding: 10px 16px;
-  cursor: pointer;
-  transition: 0.3s;
-  &:hover {
-    opacity: 0.7;
-  }
-}
-.selected-card {
-  background-color: lightgreen;
-}
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+@import "../../styles.scss";
 </style>

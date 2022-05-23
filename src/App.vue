@@ -24,11 +24,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-body {
-  background-color: #F5F5F5;
-  color: #3E5F80;
-}
-.app {
-  background-color: #F5F5F5;
-}
+@import "./styles.scss"
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <div class="wrapper">
     <div class="result-card" @click="sendSpotName">
       <p>名称：{{ spot_name }}</p>
       <p>住所：{{ address }}</p>
@@ -24,33 +24,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.result-card {
-  display: flex;
-  justify-content: space-between;
-  cursor: pointer;
-}
-.selected-result-card {
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px dotted #3E5F80;
-  border-radius: 5px;
-  display: flex;
-  justify-content: space-between;
-  cursor: pointer;
-  background-color: lightgreen;
-}
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+@import "../../styles.scss"
 </style>
