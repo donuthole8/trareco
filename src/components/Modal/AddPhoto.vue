@@ -7,7 +7,7 @@
 
       <div v-if="photo_url" class="preview-img">
         <div class="preview-img-close" @click="deletePreview">✕</div>
-        <img :src="photo_url" alt="no-img" width="200">
+        <img :src="photo_url" alt="no-img" width="200" class="photo">
       </div>
 
     </div>
@@ -28,7 +28,7 @@ export default {
       const file = this.$refs.preview.files[0];
       this.photo_url = URL.createObjectURL(file);
       this.$refs.preview.value = "";
-      
+
     },
     // プレビューのキャンセル
     deletePreview: function() {
@@ -56,6 +56,9 @@ export default {
   color: coral;
   padding: 3px;
   border-radius: 2px;
+}
+.photo {
+  margin: 10px;
 }
 h3 {
   margin: 40px 0 0;

@@ -10,10 +10,11 @@
         <div class="modal-text">
           <p>簡単な説明を追加しよう！</p>
           <input type="text" v-model="text" placeholder="写真についてひとこと">
+
+          <p v-if="spot_name != ''">{{ spot_name }}が選択されました</p>
+          <p>{{ spot_name }}が選択されました</p>
         </div>
 
-        <p v-if="spot_name != ''">{{ spot_name }}が選択されました</p>
-        <p>{{ spot_name }}が選択されました</p>
         <SearchBox
           @spot-name="spot_name = $event"
         ></SearchBox>
@@ -198,6 +199,12 @@ export default {
   transition: 0.3s;
   &:hover {
     opacity: 0.7;
+  }
 }
+.modal-text {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px dotted #3E5F80;
+  border-radius: 5px;
 }
 </style>

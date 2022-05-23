@@ -6,7 +6,7 @@
     <input type="text" v-model="keyword" placeholder="観光スポット・店名"></p>    
     <button @click="showSearchResults(keyword)" class="btn-search">検索</button>
 
-    <div class="result" v-if="search_results[0].place_id != ''">
+    <div class="result" v-if="search_results != null">
       <h3>"{{ keyword }}"の検索結果 {{ search_results.length }}件</h3>
       <p v-if="search_results.length == 0">検索結果がありません</p>
 
@@ -40,12 +40,7 @@ export default {
   data() {
     return {
       keyword: "宮島",
-      search_results: [{
-        place_id: "",
-        spot_name: "",
-        address: "",
-        image_url: "",
-      }],
+      search_results: [],
       response: "",
       image: [],
       spot_name: ""
@@ -55,7 +50,7 @@ export default {
     // PlacesAPIからの検索結果を表示
     showSearchResults:async function(keyword) {
       // 配列の初期化
-      this.search_results.splice(0)
+      this.search_results = []
 
       // Places APIのURL
       const places_api_url = process.env.VUE_APP_GOOGLE_PLACES_URL + keyword + "&key=" + process.env.VUE_APP_GOOGLE_API_KEY;

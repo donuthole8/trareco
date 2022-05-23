@@ -12,9 +12,9 @@
 export default {
   name: 'ResultCard',
   props: ["spot_name", "address", "image_url"],
-  mothods: {
+  methods: {
     sendSpotName: function() {
-      console.log("clickwwwwwwwwww", this.spot_name);
+      console.log("click")
 
       // 親にスポット名の受け渡し
       this.$emit("spot-name", this.spot_name);
