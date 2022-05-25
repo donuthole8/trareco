@@ -24,10 +24,10 @@ export default {
   methods: {
     // 写真のアップロード
     addPhoto: function() {
-      const file = this.$refs.preview.files[0];
-      this.photo_url = URL.createObjectURL(file);
+      const $file = this.$refs.preview.files[0];
+      this.photo_url = URL.createObjectURL($file);
       this.$refs.preview.value = "";
-      this.$emit("photo-upload", file)
+      this.$emit("photo-upload", $file)
     },
     // プレビューのキャンセル
     deletePreview: function() {

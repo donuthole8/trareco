@@ -1,32 +1,33 @@
 <template>
-  <div class="modal-wrap" :class="{ 'is-open': modalSwitch }">
+  <div class="modal-wrap" :class="{ 'is-open': switchModal }">
     <div class="modal">
-      <p class="modal-ttl">写真登録</p>
+      <p class="modal-title">写真登録</p>
       <div class="modal-main">
         <p>写真を地図上のスポットに登録しよう！</p>
         <AddPhoto
-          @photo-upload="file = $emit"
+          @photo-upload="file = $event"
         ></AddPhoto>
 
         <!-- <ModalText></ModalText> -->
         <div class="wrapper">
           <p>簡単な説明を追加しよう！</p>
           <input type="text" v-model="text" placeholder="写真についてひとこと">
-
-          <p v-if="spot_name != ''">"{{ spot_name }}"が選択されました</p>
         </div>
-
+        
         <SearchBox
+          @place-id="place_id = $event"
           @spot-name="spot_name = $event"
         ></SearchBox>
+        <p v-if="spot_name != ''">"{{ spot_name }}"が選択されました</p>
+
+        <div>
+          <button class="btn" @click="closeModal">閉じる</button>
+          <button class="btn" @click="addPhoto">登録</button>
+        </div>
 
       </div>
-      <div class="modal-btn-wrap">
-        <button class="btn" @click="modalClose">閉じる</button>
-        <button class="btn" @click="addPhoto(spot_name, text)">登録</button>
-      </div>
     </div>
-    <div class="modal-overlay" @click="modalClose"></div>
+    <div class="modal-overlay" @click="closeModal"></div>
   </div>
 </template>
 
@@ -36,7 +37,8 @@ import AddPhoto from './AddPhoto.vue';
 import SearchBox from '../SearchBox/SearchBox.vue';
 import firebase from "firebase/app";
 import "firebase/database";
-import axios from 'axios';
+import "firebase/storage";
+// import axios from 'axios';
 
 export default {
   name: "ModalContent",
@@ -50,15 +52,18 @@ export default {
     return {
       childModalFlg: this.modalFlg,
       // travel_record: [],
+      place_id: "",
       spot_name: "",
       text: "",
+
       // photo_url: "",
-      latest_id: 0
+      latest_id: 0,
+      file: {}
     };
   },
   methods: {
     // モーダルフラグの変更
-    childModalSwitch() {
+    switchChildModal() {
       if (this.modalFlg) {
         this.childModalFlg = true;
       } else {
@@ -67,25 +72,16 @@ export default {
       return this.childModalFlg;
     },
     // モーダルを閉じる
-    modalClose() {
+    closeModal() {
       if (this.childModalFlg) {
         this.childModalFlg = false;
         this.$emit("modal-clicked", this.childModalFlg);
       }
     },
-    addPhoto(spot_name, text) {
+    // 写真を登録
+    addPhoto() {
       // 思い出記録のDB追加
       // id, spot-name, text, photo-url, date -> travel-record
-      // とりあえずid,text,dateあたりを挿入できれば良い
-      
-      // 写真をDBに保存
-      // const file = {name: "aaa"}
-      const storageRef = firebase.storage().ref("images/" + this.file.name)
-
-      storageRef.put(this.file).then(() => {
-        console.log("uploaddd!!!!!")
-      })
-
 
       // 最新のレコードのidを取得
       // var id = this.getLatestId()
@@ -96,30 +92,47 @@ export default {
       firebase.database().ref("travel-record")
         .push({
           id: id,
-          spot_name: spot_name,
-          text: text,
+          place_id: this.place_id,
+          spot_name: this.spot_name,
+          text: this.text,
           date: new Date()
         })
+
+      // 写真をDBに保存
+      const photo_ref = "images/" + this.file.name
+      const storageRef = firebase.storage().ref(photo_ref)
+      storageRef.put(this.file).then(() => {})
     },
+
+
     // 最新のレコードのidを取得
-    getLatestId:async function() {
-      await axios.get(process.env.VUE_APP_TRAVEL_RECORD_URL).then((
-        result => {
-          console.log(result)
-          // this.latest_id = max(result.data.id)
-        }
-      ))
+    // getLatestId:async function() {
+      // await axios.get(process.env.VUE_APP_TRAVEL_RECORD_URL).then((
+      //   result => {
+      //     console.log(result)
+      //     // this.latest_id = max(result.data.id)
+      //   }
+      // ))
 
-      // const db = firebase.firestore()
+    getLatestId: function() {
+      const db = firebase.firestore()
 
-      // db.collection("travel-record").where("id", "max").get(
-      //   .then(())
-      // )
+      db.collection("travel-record").where("id", "max").get().then(snap => {
+        const data = []
+        snap.forEach(d => {
+          console.log("query-d:::", d)
+
+          data.push(d.data())
+          console.log("query-data:::", data)
+
+          return data
+        })
+      })
     }
   },
   computed: {
-    modalSwitch() {
-      return this.childModalSwitch();
+    switchModal() {
+      return this.switchChildModal();
     },
   },
 };

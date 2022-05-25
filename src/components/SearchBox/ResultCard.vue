@@ -3,7 +3,7 @@
     <div class="result-card" @click="sendSpotName">
       <p>名称：{{ spot_name }}</p>
       <p>住所：{{ address }}</p>
-      <p>ID：{{ place_id }}</p>
+      <p>{{place_id}}</p>
       <img :src="image_url" width=200 alt="no-img">
     </div>
   </div>
@@ -16,7 +16,7 @@ export default {
   methods: {
     // 親にスポット名を受け渡す
     sendSpotName: function() {
-      this.$emit("selected-id", this.place_id)
+      this.$emit("place-id", this.place_id)
       this.$emit("spot-name", this.spot_name);
     }
   }

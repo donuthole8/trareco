@@ -6,8 +6,7 @@
     <input type="text" v-model="keyword" placeholder="観光スポット・店名"></p>    
     <button @click="showSearchResults(keyword)" class="btn">検索</button>
 
-    <!-- TODO: 0件でも表示されてしまう -->
-    <div class="result" v-if="search_results != []">
+    <div class="result" v-if="search_results.length != 0">
       <h3>"{{ keyword }}"の検索結果 {{ search_results.length }}件</h3>
       <p v-if="search_results.length == 0">検索結果がありません</p>
 
@@ -22,7 +21,7 @@
               :spot_name="result.spot_name"
               :address="result.address"
               :image_url="result.image_url"
-              @selected-id="selected_id = $event"
+              @place-id="$listeners['place-id']"
               @spot-name="$listeners['spot-name']"
             ></ResultCard>
           </tr>
