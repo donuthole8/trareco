@@ -76,8 +76,6 @@ export default {
       // レスポンスを配列に格納
       if (this.response.length >= 1) {
         this.response.forEach(res => {
-                // console.log("res:", res)
-
           this.search_results.push({
             "place_id": res.place_id, 
             "spot_name": res.name, 

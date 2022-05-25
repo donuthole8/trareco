@@ -13,8 +13,6 @@
           <input type="text" v-model="text" placeholder="写真についてひとこと">
         </div>
 
-        <p>{{position}}</p>
-
         <SearchBox
           @place-id="place_id = $event"
           @spot-name="spot_name = $event"
@@ -50,10 +48,10 @@ export default {
   data() {
     return {
       childModalFlg: this.modalFlg,
-      place_id: null,
-      spot_name: null,
-      position: null,
-      text: null,
+      place_id: "",
+      spot_name: "",
+      position: "",
+      text: "",
       file: null
     };
   },
@@ -82,7 +80,7 @@ export default {
         spot_name: this.spot_name,
         position: this.position,
         text: this.text,
-        date: new Date()
+        date: String(new Date())
       }).key
 
       // 写真をDBに保存
@@ -90,6 +88,7 @@ export default {
       const storageRef = firebase.storage().ref(photo_ref)
       storageRef.put(this.file).then(() => {})
 
+      // アラート
       alert("写真を登録しました！")
     },
   },
