@@ -11,12 +11,13 @@
 <script>
 export default {
   name: 'ResultCard',
-  props: ["place_id", "spot_name", "address", "image_url"],
+  props: ["place_id", "spot_name", "address", "image_url", "position"],
   methods: {
     // 親にスポット名を受け渡す
     sendSpotName: function() {
       this.$emit("place-id", this.place_id)
       this.$emit("spot-name", this.spot_name);
+      this.$emit("position", this.position);
     }
   }
 }

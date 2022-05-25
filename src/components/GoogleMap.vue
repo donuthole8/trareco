@@ -9,10 +9,11 @@
 export default {
   data() {
     return {
-      myLatLng: { lat: -34.397, lng: 150.644 },
+      myLatLng: { lat: 34.2732114, lng: 132.3052488 },
       markers: [
-        { position: {lat: -34.397, lng: 150.644 } },
-        { position: {lat: -34.337, lng: 150.604 } },
+        // ダミー
+        { position: { lat: 34.2732114, lng: 132.3052488 } },
+        { position: { lat: 34.2232114, lng: 132.2052488 } }
       ]
     };
   },
@@ -26,7 +27,7 @@ export default {
         clearInterval(timer);
         const map = new window.google.maps.Map(this.$refs.map, {
           center: this.myLatLng,
-          zoom: 8,
+          zoom: 12,
         });
         new window.google.maps.Marker({
           position: this.myLatLng,

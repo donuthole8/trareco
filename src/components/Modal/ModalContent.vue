@@ -13,9 +13,12 @@
           <input type="text" v-model="text" placeholder="写真についてひとこと">
         </div>
 
+        <p>{{position}}</p>
+
         <SearchBox
           @place-id="place_id = $event"
           @spot-name="spot_name = $event"
+          @position="position = $event"
         ></SearchBox>
         <p v-if="spot_name != ''">"{{ spot_name }}"が選択されました</p>
 
@@ -47,10 +50,11 @@ export default {
   data() {
     return {
       childModalFlg: this.modalFlg,
-      place_id: "",
-      spot_name: "",
-      text: "",
-      file: ""
+      place_id: null,
+      spot_name: null,
+      position: null,
+      text: null,
+      file: null
     };
   },
   methods: {
@@ -76,6 +80,7 @@ export default {
       const key = firebase.database().ref("travel-record").push({
         place_id: this.place_id,
         spot_name: this.spot_name,
+        position: this.position,
         text: this.text,
         date: new Date()
       }).key
