@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <div class="wrapper">
     <p>写真を地図に登録しよう！</p>
 
     <ModalButton 
@@ -10,8 +10,6 @@
     <ModalContent
       :modalFlg="modalFlg"
       @modal-clicked="modalFlg = $event"
-      :modalTtl="modalItems.modalTtl"
-      :modalContent="modalItems.modalContent"
     />
   </div>
 </template>
@@ -26,8 +24,6 @@ export default {
     ModalButton,
     ModalContent,
   },
-
-  props: ["modalItems"],
   data() {
     return {
       modalFlg: false
@@ -37,41 +33,5 @@ export default {
 </script>
 
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-
-#overlay {
-  z-index:1;
-
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background-color:rgba(0,0,0,0.5);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#content{
-  z-index:2;
-  width:50%;
-  padding: 1em;
-  background:#fff;
-}
-
+@import "../../styles.scss";
 </style>

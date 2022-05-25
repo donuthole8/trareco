@@ -1,46 +1,69 @@
 <template>
-  <div class="modal-wrap" :class="{ 'is-open': modalSwitch }">
+  <div class="modal-wrap" :class="{ 'is-open': switchModal }">
     <div class="modal">
-      <p class="modal-ttl">{{ modalTtl }}</p>
-      <div class="modal-content">
-        <p>{{ modalContent }}</p>
-        <AddPhoto></AddPhoto>
-        <SearchBox></SearchBox>
-      </div>
-      <div class="modal-btn-wrap">
-        <button class="close-modal" @click="modalClose">閉じる</button>
-        <button class="close-modal" @click="addPhoto">登録</button>
+      <p class="modal-title">写真登録</p>
+      <div class="modal-main">
+        <p>写真を地図上のスポットに登録しよう！</p>
+        <AddPhoto
+          @photo-upload="file = $event"
+        ></AddPhoto>
+
+        <!-- <ModalText></ModalText> -->
+        <div class="wrapper">
+          <p>簡単な説明を追加しよう！</p>
+          <input type="text" v-model="text" placeholder="写真についてひとこと">
+        </div>
+        
+        <SearchBox
+          @place-id="place_id = $event"
+          @spot-name="spot_name = $event"
+        ></SearchBox>
+        <p v-if="spot_name != ''">"{{ spot_name }}"が選択されました</p>
+
+        <div>
+          <button class="btn" @click="closeModal">閉じる</button>
+          <button class="btn" @click="addPhoto">登録</button>
+        </div>
+
       </div>
     </div>
-    <div class="modal-overlay" @click="modalClose"></div>
+    <div class="modal-overlay" @click="closeModal"></div>
   </div>
 </template>
 
 
 <script>
-import SearchBox from '../SearchBox/SearchBox.vue';
 import AddPhoto from './AddPhoto.vue';
+import SearchBox from '../SearchBox/SearchBox.vue';
+import firebase from "firebase/app";
+import "firebase/database";
+import "firebase/storage";
+// import axios from 'axios';
 
 export default {
   name: "ModalContent",
   components: {
+    AddPhoto,
+    // ModalText,
     SearchBox,
-    AddPhoto
   },
-  props: ["modalFlg", "modalTtl", "modalContent"],
+  props: ["modalFlg"],
   data() {
     return {
       childModalFlg: this.modalFlg,
+      // travel_record: [],
+      place_id: "",
+      spot_name: "",
+      text: "",
+
+      // photo_url: "",
+      latest_id: 0,
+      file: {}
     };
   },
   methods: {
-    modalClose() {
-      if (this.childModalFlg) {
-        this.childModalFlg = false;
-        this.$emit("modal-clicked", this.childModalFlg);
-      }
-    },
-    childModalSwitch() {
+    // モーダルフラグの変更
+    switchChildModal() {
       if (this.modalFlg) {
         this.childModalFlg = true;
       } else {
@@ -48,16 +71,68 @@ export default {
       }
       return this.childModalFlg;
     },
-    addPhoto() {
+    // モーダルを閉じる
+    closeModal() {
       if (this.childModalFlg) {
         this.childModalFlg = false;
         this.$emit("modal-clicked", this.childModalFlg);
       }
     },
+    // 写真を登録
+    addPhoto() {
+      // 思い出記録のDB追加
+      // id, spot-name, text, photo-url, date -> travel-record
+
+      // 最新のレコードのidを取得
+      // var id = this.getLatestId()
+      var id = 0
+      id += 1
+
+      // console.log("inputed-txt", text)
+      firebase.database().ref("travel-record")
+        .push({
+          id: id,
+          place_id: this.place_id,
+          spot_name: this.spot_name,
+          text: this.text,
+          date: new Date()
+        })
+
+      // 写真をDBに保存
+      const photo_ref = "images/" + this.file.name
+      const storageRef = firebase.storage().ref(photo_ref)
+      storageRef.put(this.file).then(() => {})
+    },
+
+
+    // 最新のレコードのidを取得
+    // getLatestId:async function() {
+      // await axios.get(process.env.VUE_APP_TRAVEL_RECORD_URL).then((
+      //   result => {
+      //     console.log(result)
+      //     // this.latest_id = max(result.data.id)
+      //   }
+      // ))
+
+    getLatestId: function() {
+      const db = firebase.firestore()
+
+      db.collection("travel-record").where("id", "max").get().then(snap => {
+        const data = []
+        snap.forEach(d => {
+          console.log("query-d:::", d)
+
+          data.push(d.data())
+          console.log("query-data:::", data)
+
+          return data
+        })
+      })
+    }
   },
   computed: {
-    modalSwitch() {
-      return this.childModalSwitch();
+    switchModal() {
+      return this.switchChildModal();
     },
   },
 };
@@ -65,87 +140,5 @@ export default {
 
 
 <style lang="scss" scoped>
-.modal {
-  width: 85%;
-  height: 85%;
-  background: #fff;
-  position: relative;
-  padding: 20px;
-  z-index: 200;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s, visibility 0.3s;
-  &-wrap {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    transition: z-index 0.3s;
-    &.is-open {
-      z-index: 1;
-      .modal {
-        opacity: 1;
-        visibility: visible;
-      }
-      .modal-overlay {
-        opacity: 1;
-        visibility: visible;
-      }
-    }
-  }
-  &-overlay {
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background: rgba($color: #000, $alpha: 0.6);
-    z-index: 100;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s, visibility 0.3s;
-  }
-  &-close {
-    background: #1b58a6;
-    color: #fff;
-    font-size: 15px;
-    border: none;
-    border-radius: 4px;
-    padding: 10px 16px;
-    cursor: pointer;
-    transition: 0.3s;
-    &:hover {
-      opacity: 0.7;
-    }
-  }
-  &-ttl {
-    font-size: 20px;
-  }
-  &-content {
-    margin-bottom: 30px;
-  }
-  &-btn {
-    &-wrap {
-      text-align: center;
-    }
-  }
-}
-.close-modal {
-  background: #61c1b3;
-  color: #fffcdb;
-  font-size: 15px;
-  border: none;
-  border-radius: 4px;
-  padding: 10px 16px;
-  cursor: pointer;
-  transition: 0.3s;
-  &:hover {
-    opacity: 0.7;
-}
-}
+@import "../../styles.scss"
 </style>

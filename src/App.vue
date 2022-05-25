@@ -1,16 +1,10 @@
 <template>
-  <div class="body">
-    <div>
-      <Header></Header>
-    </div>
+  <div class="app">
+    <Header></Header>
 
-    <div>
-      <Main></Main>
-    </div>
+    <Main></Main>
 
-    <div>
-      <Footer></Footer>
-    </div>
+    <Footer></Footer>
   </div>
 </template>
 
@@ -30,8 +24,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-body {
-  background-color: #F5F5F5;
-  color: #3E5F80;
-}
+@import "./styles.scss"
 </style>
