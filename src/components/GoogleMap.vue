@@ -10,6 +10,10 @@ export default {
   data() {
     return {
       myLatLng: { lat: -34.397, lng: 150.644 },
+      markers: [
+        { position: {lat: -34.397, lng: 150.644 } },
+        { position: {lat: -34.337, lng: 150.604 } },
+      ]
     };
   },
   mounted() {
@@ -28,8 +32,28 @@ export default {
           position: this.myLatLng,
           map,
         });
+        console.log("aaaaa")
+
+        for (var i = 0; i < this.markers.length; i++) {
+          new window.google.maps.Marker({
+            position: this.markers[i].position,
+            map,
+          });
+        }
       }
     }, 500);
+
+    // let bounds = new window.google.maps.LatLngBounds();
+    // const marker = new window.google.maps.Marker({
+    //   position: {
+    //     lat: this.markers.position.lat,
+    //     lng: this.markers.position.lng
+    //   },
+    //   map: this.map
+    // });
+    // bounds.extend(marker.position);
+
+
   },
 };
 </script>

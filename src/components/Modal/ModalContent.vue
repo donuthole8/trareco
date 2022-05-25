@@ -8,12 +8,11 @@
           @photo-upload="file = $event"
         ></AddPhoto>
 
-        <!-- <ModalText></ModalText> -->
         <div class="wrapper">
           <p>簡単な説明を追加しよう！</p>
           <input type="text" v-model="text" placeholder="写真についてひとこと">
         </div>
-        
+
         <SearchBox
           @place-id="place_id = $event"
           @spot-name="spot_name = $event"
@@ -31,7 +30,6 @@
   </div>
 </template>
 
-
 <script>
 import AddPhoto from './AddPhoto.vue';
 import SearchBox from '../SearchBox/SearchBox.vue';
@@ -43,21 +41,16 @@ export default {
   name: "ModalContent",
   components: {
     AddPhoto,
-    // ModalText,
     SearchBox,
   },
   props: ["modalFlg"],
   data() {
     return {
       childModalFlg: this.modalFlg,
-      // travel_record: [],
       place_id: "",
       spot_name: "",
       text: "",
-
-      // photo_url: "",
-      latest_id: 0,
-      file: {}
+      file: ""
     };
   },
   methods: {
@@ -91,6 +84,8 @@ export default {
       const photo_ref = "images/" + key
       const storageRef = firebase.storage().ref(photo_ref)
       storageRef.put(this.file).then(() => {})
+
+      alert("写真を登録しました！")
     },
   },
   computed: {
