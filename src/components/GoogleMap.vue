@@ -7,8 +7,6 @@
 
 <script>
 import firebase from "firebase/app";
-// import { getStorage } from "firebase/storage"
-// import { ref } from "firebase/storage"
 import "firebase/database";
 import "firebase/storage";
 
@@ -21,7 +19,7 @@ export default {
       photo_url: ""
     };
   },
-  async mounted() {
+  mounted() {
     // DBの位置情報・データをmarkersに格納
     firebase.database().ref("travel-record")
       .on("value", snapshot => {
@@ -60,9 +58,9 @@ export default {
             map: map
           });
 
+          // 画像URLを取得
           var storageRef = firebase.storage().ref();
           const DownloadTask = storageRef.child("images/" + this.spot_data[i].key);
-
           DownloadTask.getDownloadURL()
             .then(photo_url => {
               document.getElementById(this.spot_data[i].key).src = photo_url;
@@ -76,7 +74,6 @@ export default {
               + "<img id='" + this.spot_data[i].key + "' src='" + this.photo_url + "' width=150>",
             maxWidth: 300
           });
-
           infowindow.open(this.map, marker);
           bounds.extend(marker.position);
         }    
