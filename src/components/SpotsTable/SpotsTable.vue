@@ -3,11 +3,11 @@
     <div class="added-spots">
       <p>登録された思い出の一覧です!</p>
 
-      <li v-for="spot in spots" :key="spot">
+      <li v-for="spot in spots" :key="spot.spot_name">
         <SpotRecord
           :spot_name="spot.spot_name"
-          :text=     "spot.text"
-          :date=     "spot.date"
+          :text="spot.text"
+          :position="spot.position"
         ></SpotRecord>
       </li>
     </div>
@@ -40,8 +40,8 @@ export default {
           this.spots.push({
             "spot_name": data[key].spot_name,
             "text":      data[key].text,
-            "date":      data[key].date,
-            })
+            "position":  data[key].position,
+          })
         }
       })
     })

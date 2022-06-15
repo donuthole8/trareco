@@ -2,10 +2,12 @@
   <div>
     <h2>Google Map</h2>
     <div class="google-map" ref="map"></div>
+    <div>test:{{test}}</div>
   </div>
 </template>
 
 <script>
+import EventBus from "../main";
 import firebase from "firebase/app";
 import "firebase/database";
 import "firebase/storage";
@@ -16,10 +18,29 @@ export default {
       myLatLng: { lat: 34.2232114, lng: 132.3052488 },
       markers: [],
       spot_data: [],
-      photo_url: ""
+      photo_url: "",
+
+      test: ""
     };
   },
+  methods: {
+    // 登録スポット一覧から取得した位置情報を現在地にセット
+    setCurrentPosition(position) {
+      let timer = setInterval(() => {
+        if(window.google) {
+          clearInterval(timer);
+          this.map = new window.google.maps.Map(this.$refs.map, {
+            center: position,
+            zoom: 12
+          })
+        }
+      })
+    }
+  },
   mounted() {
+    // 登録スポット一覧から位置情報を取得
+    EventBus.$on("position", this.setCurrentPosition)
+
     // DBの位置情報・データをmarkersに格納
     firebase.database().ref("travel-record")
       .on("value", snapshot => {
