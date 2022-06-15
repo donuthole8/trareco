@@ -5,6 +5,8 @@
     <Modal></Modal>
 
     <GoogleMap></GoogleMap>
+
+    <SpotsTable></SpotsTable>
   </div>
 </template>
 
@@ -12,6 +14,7 @@
 // import SearchBox from './SearchBox/SearchBox.vue'
 import Modal from './Modal/Modal.vue'
 import GoogleMap from './GoogleMap.vue'
+import SpotsTable from './SpotsTable/SpotsTable.vue'
 
 
 export default {
@@ -20,6 +23,7 @@ export default {
     // SearchBox,
     Modal,
     GoogleMap,
+    SpotsTable,
   },
 }
 </script>

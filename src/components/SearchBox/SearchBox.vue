@@ -44,7 +44,7 @@ export default {
   },
   data() {
     return {
-      keyword: "宮島",
+      keyword: "",
       search_results: [],
       response: "",
       image: [],
