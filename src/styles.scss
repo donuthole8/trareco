@@ -215,3 +215,16 @@ a {
   cursor: pointer;
   background-color: lightgreen;
 }
+
+/* SpotsTable */
+
+/* SpotsTable.vue */
+
+/* SpotRecord.vue */
+.spot-record {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px dotted var(--border-color);
+  border-radius: 5px;
+  cursor: pointer;
+}

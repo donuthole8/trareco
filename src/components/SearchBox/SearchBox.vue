@@ -61,6 +61,8 @@ export default {
 
       // Places APIのURL
       const places_api_url = process.env.VUE_APP_GOOGLE_PLACES_URL + keyword + "&key=" + process.env.VUE_APP_GOOGLE_API_KEY;
+      console.log("exe palce!!!!!!")
+
     
       // Places APIのレスポンス
       await axios
@@ -93,6 +95,8 @@ export default {
 
       // Photos APIのURL
       const photos_api_url = process.env.VUE_APP_GOOGLE_PHOTOS_URL + photo_ref + "&key=" + process.env.VUE_APP_GOOGLE_API_KEY
+      console.log("exe photo!!!!!!")
+
 
       return photos_api_url
     }

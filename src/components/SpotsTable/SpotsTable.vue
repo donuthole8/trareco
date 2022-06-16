@@ -8,6 +8,7 @@
           :spot_name="spot.spot_name"
           :text="spot.text"
           :position="spot.position"
+          :photo_key="spot.photo_key"
         ></SpotRecord>
       </li>
     </div>
@@ -41,6 +42,7 @@ export default {
             "spot_name": data[key].spot_name,
             "text":      data[key].text,
             "position":  data[key].position,
+            "photo_key": key,
           })
         }
       })
