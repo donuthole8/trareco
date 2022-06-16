@@ -16,7 +16,6 @@ export default {
     return {
       myLatLng: { lat: 34.2232114, lng: 132.3052488 },
       spot_data: [],
-      photo_url: "",
     };
   },
   methods: {
@@ -57,7 +56,7 @@ export default {
               content:
                 "<h3>名称：" + this.spot_data[i].spot_name + "</h3><br>" + 
                 "<p>説明：" + this.spot_data[i].text + "</p><br>" + 
-                "<img id='" + this.spot_data[i].key + "' src='" + this.photo_url + "' width=150>",
+                "<img id='" + this.spot_data[i].key + "' src='' width=150>",
               maxWidth: 300
             });
             infowindow.open(this.map, marker);
@@ -94,15 +93,18 @@ export default {
           const DownloadTask = storageRef.child("images/" + spot.photo_key);
           DownloadTask.getDownloadURL()
             .then(photo_url => {
+              // imgタグのidをキーにしてsrcをセット
               document.getElementById(spot.photo_key).src = photo_url
             });
 
           // 吹き出しを表示
+          console.log("infowindo")
+
           var infowindow = new window.google.maps.InfoWindow({
             content:
               "<h3>名称：" + spot.spot_name + "</h3><br>" + 
               "<p>説明：" + spot.text + "</p><br>" + 
-              "<img id='" + spot.key + "' src='" + this.photo_url + "' width=150>",
+              "<img id='" + spot.photo_key + "' src='' width=150>",
             maxWidth: 300
           });
           infowindow.open(this.map, marker);
