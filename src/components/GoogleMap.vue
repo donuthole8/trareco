@@ -60,8 +60,6 @@ export default {
               maxWidth: 300
             });
             infowindow.open(this.map, marker);
-
-            // infowindow.open(this.map);
             bounds.extend(marker.position);
           }
         }
