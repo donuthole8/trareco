@@ -21,8 +21,10 @@
               :spot_name="result.spot_name"
               :address="result.address"
               :image_url="result.image_url"
+              :position="result.position"
               @place-id="$listeners['place-id']"
               @spot-name="$listeners['spot-name']"
+              @position="$listeners['position']"
             ></ResultCard>
           </tr>
         </table>
@@ -42,12 +44,13 @@ export default {
   },
   data() {
     return {
-      keyword: "宮島",
+      keyword: "",
       search_results: [],
       response: "",
       image: [],
       spot_name: "",
-      selected_id: ""
+      position: null
+      // selected_id: "",
     }
   },
   methods: {
@@ -69,6 +72,7 @@ export default {
           console.log("Error with google places api", error)
         })
 
+
       // レスポンスを配列に格納
       if (this.response.length >= 1) {
         this.response.forEach(res => {
@@ -76,7 +80,8 @@ export default {
             "place_id": res.place_id, 
             "spot_name": res.name, 
             "address": res.formatted_address.substring(13), 
-            "image_url": this.getImageUrl(res.photos[0].photo_reference)
+            "image_url": this.getImageUrl(res.photos[0].photo_reference),
+            "position": res.geometry.location
           })
         })
       }

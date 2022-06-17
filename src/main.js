@@ -2,19 +2,24 @@ import Vue from 'vue'
 import App from './App.vue'
 import firebase from 'firebase'
 
+// Firebase接続情報
 const firebaseConfig = {
-  apiKey: "AIzaSyD2l-XCLSwRasJHT2235f3RK9MuMImGpF0",
-  authDomain: "trareco-ccb11.firebaseapp.com",
-  databaseURL: "https://trareco-ccb11-default-rtdb.firebaseio.com",
-  projectId: "trareco-ccb11",
-  storageBucket: "trareco-ccb11.appspot.com",
-  messagingSenderId: "102430406773",
-  appId: "1:102430406773:web:1decd3d90e7f3f9a9ee03c",
-  measurementId: "G-D3LV9CC9QW"
+  apiKey: process.env.VUE_APP_FIREBASE_API_KEY,
+  authDomain: process.env.VUE_APP_FIREBASE_AUTH_DOMAIN,
+  databaseURL: process.env.VUE_APP_FIREBASE_DB_URL,
+  projectId: process.env.VUE_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.VUE_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.VUE_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.VUE_APP_FIREBASE_APP_ID,
+  measurementId: process.env.VUE_APP_FIREBASE_MEASUREMENT_ID
 };
-
 firebase.initializeApp(firebaseConfig)
 
+// イベントバス（非親子間でのデータ受け渡し）
+const EventBus = new Vue()
+export default EventBus
+
+// Vue設定
 Vue.config.productionTip = false
 
 new Vue({
