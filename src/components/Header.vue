@@ -2,6 +2,7 @@
   <div class="header">
     <h1>Trareco</h1>
   </div>
+  
 </template>
 
 <script>
