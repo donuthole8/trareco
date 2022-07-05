@@ -1,12 +1,12 @@
 # trareco
 
 
-## デプロイURL
+## デプロイ先URL
 Firebase Hostingを使用
 - https://trareco-ccb11.web.app
 - https://trareco-ccb11.firebaseapp.com/
 
-## テスト
+## テスト実行
 以下コマンドを実行
 
 ```
@@ -22,6 +22,6 @@ Firebase Realtime Databaseを使用
 - https://console.firebase.google.com/project/trareco-ccb11/database/trareco-ccb11-default-rtdb/data
 
 ## 画像ストレージ
-Firebase Storage
+Firebase Storageを使用
 - https://console.firebase.google.com/u/0/project/trareco-ccb11/storage/trareco-ccb11.appspot.com/files/~2Fimages
 

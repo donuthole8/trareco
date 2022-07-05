@@ -2,6 +2,8 @@
   <div class="wrapper">
     <!-- <SearchBox></SearchBox> -->
 
+    <div class="bar-space"></div>
+
     <Modal></Modal>
 
     <GoogleMap></GoogleMap>
