@@ -10,7 +10,14 @@
 
         <div class="wrapper">
           <p>簡単な説明を追加しよう！</p>
-          <input type="text" v-model="text" placeholder="写真についてひとこと">
+
+          <v-text-field
+            v-modal="text"
+            prepend-icon="mdi-pencil-plus"
+            label="写真についてひとこと"
+            hide-details="auto"
+          >
+          </v-text-field>
         </div>
 
         <SearchBox
@@ -52,7 +59,7 @@ export default {
       spot_name: "",
       position: "",
       text: "",
-      file: null
+      file: null,
     };
   },
   methods: {

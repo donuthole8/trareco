@@ -3,10 +3,11 @@
     <div class="search-box">
       <p>登録する写真を選択しよう！</p>
       
-      <!-- <input type="file" ref="preview" @change="addPhoto"> -->
-      <v-file-input
+      <v-file-input class="file-input"
         @change="addPhoto"
         ref="preview"
+        prepend-icon="mdi-folder-image"
+        label="登録写真"
         chips
         multiple
         truncate-length="15"
@@ -42,7 +43,7 @@ export default {
     addPhoto: function() {
       const $file = this.$refs.preview.$refs.input.files[0]
       this.photo_url = URL.createObjectURL($file);
-      this.$refs.preview.value = "";
+      this.$refs.preview.$refs.input.value = "";
       this.$emit("photo-upload", $file)
     },
     // プレビューのキャンセル

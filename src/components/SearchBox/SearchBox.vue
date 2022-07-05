@@ -2,8 +2,18 @@
   <div class="wrapper">
     <p>観光スポットや店を検索しよう！</p>
 
-    <p>観光スポット・店名：<br>
-    <input type="text" v-model="keyword" placeholder="観光スポット・店名"></p>    
+    <p>観光スポット・店名：</p>
+    
+    
+    <!-- <input type="text" v-model="keyword" placeholder="観光スポット・店名"></p> -->
+
+    <v-text-field
+      v-modal="keyword"
+      prepend-icon="mdi-map-search"
+      label="観光スポット・店名"
+      hide-details="auto"
+    ></v-text-field>
+
     <button @click="showSearchResults(keyword)" class="modal-btn">検索</button>
 
     <div class="result" v-if="search_results.length != 0">

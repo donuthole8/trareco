@@ -15,7 +15,7 @@
         icon
         color=var(--v-text2-base)
       >
-        <v-icon>mdi-thumb-up</v-icon>
+        <v-icon>mdi-map-marker-radius</v-icon>
       </v-btn>
 
       <v-toolbar-title class="header-title">Trareco</v-toolbar-title>
