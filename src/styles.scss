@@ -53,14 +53,20 @@ a {
 
 /* Footer.vue */
 .footer {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   background-color: var(--main-color);
-  color: var(--text-color2);
   border-radius: 5px;
   margin: 10px;
-  padding: 10px
+}
+
+.footer-content {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--main-color);
+}
+
+.footer-text {
+  color: var(--text-color2);
+  font-size: medium;
 }
 
 /* GoogleMap.vue */

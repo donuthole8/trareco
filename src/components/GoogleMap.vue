@@ -34,6 +34,8 @@ export default {
             zoom: 12,
           });
 
+          console.log("showmap-leng", this.spot_data)
+
           // DBの位置情報にマーカを表示
           let bounds = new window.google.maps.LatLngBounds();
           for (let i = 0; i < this.spot_data.length; i++) {
@@ -130,6 +132,7 @@ export default {
           }
         })
       })
+    console.log("mouted-leng", this.spot_data)
 
     // 地図の描画
     this.showMap()
