@@ -21,8 +21,8 @@
         <p v-if="spot_name != ''">"{{ spot_name }}"が選択されました</p>
 
         <div>
-          <button class="btn" @click="closeModal">閉じる</button>
-          <button class="btn" @click="addPhoto">登録</button>
+          <button class="modal-btn" @click="closeModal">閉じる</button>
+          <button class="modal-btn" @click="addPhoto">登録</button>
         </div>
 
       </div>

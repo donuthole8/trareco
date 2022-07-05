@@ -4,7 +4,7 @@
 
     <p>観光スポット・店名：<br>
     <input type="text" v-model="keyword" placeholder="観光スポット・店名"></p>    
-    <button @click="showSearchResults(keyword)" class="btn">検索</button>
+    <button @click="showSearchResults(keyword)" class="modal-btn">検索</button>
 
     <div class="result" v-if="search_results.length != 0">
       <h3>"{{ keyword }}"の検索結果 {{ search_results.length }}件</h3>

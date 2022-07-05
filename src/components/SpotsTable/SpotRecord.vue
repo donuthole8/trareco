@@ -1,6 +1,6 @@
 <template>
   <div class="spot-record" @click="sendPosition">
-    <p>{{ spot_name }}: {{ text }}</p>
+    <p>{{ spot_name }}</p>
   </div>
 </template>
 

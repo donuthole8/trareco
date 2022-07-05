@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div class="main">
     <!-- <SearchBox></SearchBox> -->
 
     <div class="bar-space"></div>

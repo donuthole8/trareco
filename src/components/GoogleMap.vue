@@ -1,6 +1,5 @@
 <template>
-  <div>
-    <h2>Google Map</h2>
+  <div class="wrapper">
     <div class="google-map" ref="map"></div>
   </div>
 </template>
