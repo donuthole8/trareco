@@ -1,13 +1,11 @@
 <template>
   <div class="wrapper">
-    <div class="search-box">
-      <p>登録する写真を選択しよう！</p>
-      
+    <div class="search-box">      
       <v-file-input class="file-input"
         @change="addPhoto"
         ref="preview"
         prepend-icon="mdi-folder-image"
-        label="登録写真"
+        label="登録する写真を選択しよう！"
         chips
         multiple
         truncate-length="15"

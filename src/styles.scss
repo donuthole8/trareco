@@ -22,15 +22,15 @@ body {
 
 /* all */
 h3 {
-  margin: 40px 0 0;
+  margin: 40px 0px 0px;
 }
 ul {
   list-style-type: none;
-  padding: 0;
+  padding: 0px;
 }
 li {
   display: inline-block;
-  margin: 0 10px;
+  margin: 0px 10px;
 }
 a {
   color: var(--link-color);
@@ -39,8 +39,6 @@ a {
 .wrapper {
   padding: 10px;
   margin-bottom: 10px;
-  border: 1px dotted var(--border-color);
-  border-radius: 5px;
 }
 
 /* Main.vue */
@@ -89,12 +87,14 @@ a {
 
 /* Modal */
 .modal-btn {
-  background: var(--second-color);
-  color: var(--text-color3);
+  background: var(--main-color);
+  color: var(--text-color2);
   font-size: 15px;
   border: none;
+  min-width: 100px;
   border-radius: 4px;
   padding: 10px 16px;
+  margin: 5px;
   cursor: pointer;
   transition: 0.3s;
   &:hover {
@@ -107,10 +107,10 @@ a {
   z-index:1;
 
   position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background-color:rgba(0,0,0,0.5);
 
   display: flex;
@@ -119,24 +119,29 @@ a {
 }
 
 #content{
-  z-index:2;
-  width:50%;
+  z-index: 2;
+  width: 50%;
   padding: 1em;
-  background:#fff;
+  background: #fff;
 }
 
 /* ModalButton.vue */
 
 
 /* ModalContent.vue */
+.modal-title {
+  color: var(--text-color2);
+}
+
 .modal {
   overflow: auto;
   overflow: scroll;
   width: 85%;
-  height: 85%;
+  max-height: 85%;
   background: var(--background-color);
+  border-radius: 5px;
   position: relative;
-  padding: 20px;
+  padding: 0px;
   z-index: 200;
   opacity: 0;
   visibility: hidden;
@@ -217,6 +222,10 @@ a {
 .photo {
   margin: 10px;
 }
+.file-input {
+  padding: 0px;
+  margin: 0px;
+}
 
 /* SearchBox */
 
@@ -250,8 +259,8 @@ a {
 .spot-record {
   padding: 10px;
   margin-bottom: 10px;
-  background-color: var(--second-color);
-  color: var(--text-color3);
+  background-color: var(--main-color);
+  color: var(--text-color2);
   border-radius: 10px 0px 10px 0px;
   cursor: pointer;
 }

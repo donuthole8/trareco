@@ -1,41 +1,55 @@
 <template>
-  <div class="modal-wrap" :class="{ 'is-open': switchModal }">
+  <v-card class="modal-wrap" :class="{ 'is-open': switchModal }">
+
     <div class="modal">
-      <p class="modal-title">写真登録</p>
-      <div class="modal-main">
-        <p>写真を地図上のスポットに登録しよう！</p>
-        <AddPhoto
-          @photo-upload="file = $event"
-        ></AddPhoto>
+        <v-toolbar
+          color=var(--v-main-base)
+        >
+          <v-toolbar-title class="modal-title">思い出を登録</v-toolbar-title>
+        </v-toolbar>
 
-        <div class="wrapper">
-          <p>簡単な説明を追加しよう！</p>
+        <v-card-text>
+          思い出を地図上に登録しよう！登録したい写真と同じ観光スポット・店名を検索すれば地図上に写真と簡単なテキストを保存できます！
+        </v-card-text>
 
-          <v-text-field
-            v-modal="text"
-            prepend-icon="mdi-pencil-plus"
-            label="写真についてひとこと"
-            hide-details="auto"
-          >
-          </v-text-field>
+        <v-divider></v-divider>
+
+        <div class="modal-main">
+          <AddPhoto
+            @photo-upload="file = $event"
+          ></AddPhoto>
+
+          <div class="wrapper">
+            <v-text-field
+              v-modal="text"
+              prepend-icon="mdi-pencil-plus"
+              label="写真の簡単な説明を追加しよう！"
+              hide-details="auto"
+            >
+            </v-text-field>
+          </div>
+
+          <SearchBox
+            @place-id="place_id = $event"
+            @spot-name="spot_name = $event"
+            @position="position = $event"
+          ></SearchBox>
+          <p v-if="spot_name != ''">"{{ spot_name }}"が選択されました</p>
+
         </div>
 
-        <SearchBox
-          @place-id="place_id = $event"
-          @spot-name="spot_name = $event"
-          @position="position = $event"
-        ></SearchBox>
-        <p v-if="spot_name != ''">"{{ spot_name }}"が選択されました</p>
+        <v-divider></v-divider>
 
-        <div>
-          <button class="modal-btn" @click="closeModal">閉じる</button>
-          <button class="modal-btn" @click="addPhoto">登録</button>
-        </div>
-
-      </div>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <div>
+            <button class="modal-btn" @click="closeModal">閉じる</button>
+            <button class="modal-btn" @click="addPhoto">登録</button>
+          </div>
+        </v-card-actions>
     </div>
     <div class="modal-overlay" @click="closeModal"></div>
-  </div>
+  </v-card>
 </template>
 
 <script>

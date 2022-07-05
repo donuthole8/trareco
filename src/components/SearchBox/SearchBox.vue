@@ -1,20 +1,13 @@
 <template>
   <div class="wrapper">
-    <p>観光スポットや店を検索しよう！</p>
-
-    <p>観光スポット・店名：</p>
-    
-    
-    <!-- <input type="text" v-model="keyword" placeholder="観光スポット・店名"></p> -->
-
     <v-text-field
       v-modal="keyword"
       prepend-icon="mdi-map-search"
-      label="観光スポット・店名"
+      label="観光スポットや店を検索しよう！"
       hide-details="auto"
+      append-outer-icon="mdi-magnify"
+      @click:append-outer="showSearchResults(keyword)"
     ></v-text-field>
-
-    <button @click="showSearchResults(keyword)" class="modal-btn">検索</button>
 
     <div class="result" v-if="search_results.length != 0">
       <h3>"{{ keyword }}"の検索結果 {{ search_results.length }}件</h3>
@@ -81,7 +74,6 @@ export default {
         .catch(error => {
           console.log("Error with google places api", error)
         })
-
 
       // レスポンスを配列に格納
       if (this.response.length >= 1) {
