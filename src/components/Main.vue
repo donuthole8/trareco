@@ -4,9 +4,9 @@
 
     <div class="bar-space"></div>
 
-    <Modal></Modal>
-
     <GoogleMap></GoogleMap>
+
+    <Modal></Modal>
 
     <SpotsTable></SpotsTable>
   </div>
