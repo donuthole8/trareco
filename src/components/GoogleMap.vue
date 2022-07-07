@@ -33,8 +33,6 @@ export default {
             zoom: 12,
           });
 
-          console.log("showmap-leng", this.spot_data)
-
           // DBの位置情報にマーカを表示
           let bounds = new window.google.maps.LatLngBounds();
           for (let i = 0; i < this.spot_data.length; i++) {
@@ -90,11 +88,23 @@ export default {
           // 画像URLを取得
           var storageRef = firebase.storage().ref();
           const DownloadTask = storageRef.child("images/" + spot.photo_key);
+
+          // 画像を表示
+          try {
           DownloadTask.getDownloadURL()
             .then(photo_url => {
               // imgタグのidをキーにしてsrcをセット
               document.getElementById(spot.photo_key).src = photo_url
-            });
+            });            
+          } catch (error) {
+            console.log("Error with firebase storage", error)
+            // imgタグのidをキーにしてNoImageを表示
+            const newContent = document.createTextNode("image_not_supported")
+
+            console.log("newConte", newContent)
+            document.getElementById(spot.photo_key).appendChild(newContent)
+            // document.getElementById(spot.photo_key).src = "image_not_supported"
+          }
 
           // 吹き出しを表示
           var content = 
@@ -106,11 +116,14 @@ export default {
               "</div>" + 
 
               "<div class='ginfo-text'>" + 
-                "<span class='material-icons ginfo-text-icon'>book</span>" +
+                "<span class='material-icons ginfo-text-icon md-small'>book</span>" +
                 "<span>" + spot.text + "</span>" + 
               "</div>" + 
 
-              "<img id='" + spot.photo_key + "' class='ginfo-img' src='' width=150>" + 
+              // "<img id='" + spot.photo_key + "' class='ginfo-img' src='' width=150>" + 
+              "<div class='ginfo-img-wrapper'>" + 
+                "<span class='material-icons ginfo-img md-large'>image_not_supported</span>" +
+              "</div>" + 
             "</div>"
 
           var infowindow = new window.google.maps.InfoWindow({
@@ -142,7 +155,6 @@ export default {
           }
         })
       })
-    console.log("mouted-leng", this.spot_data)
 
     // 地図の描画
     this.showMap()

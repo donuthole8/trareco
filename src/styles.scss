@@ -103,14 +103,13 @@ p {
   background: var(--background-color) !important;
 }
 
-.gm-ui-hover-effect {
-  background-color: var(--second-color);
-}
-
 .ginfo-wrapper {
   max-width: 200px;
   background-color: var(--background-color);
 }
+
+.material-icons.md-small { font-size: 15px; }
+.material-icons.md-large { font-size: 120px; }
 
 .ginfo-title {
   background-color: var(--second-color);
@@ -124,8 +123,6 @@ p {
 .giinfo-title-icon {
   color: var(--text-color3);
   background-color: var(--second-color);
-  width: 20px;
-  display: flex;
 }
 
 .ginfo-text {
@@ -136,12 +133,18 @@ p {
 .giinfo-text-icon {
   color: var(--text-color1);
   background-color: var(--background-color);
-  width: 10px !important;
-  display: flex;
+}
+
+.ginfo-img-wrapper {
+  text-align: center;
 }
 
 .ginfo-img {
   border-radius: 5px;
+  padding: 0px;
+  border: solid 5px var(--second-color);
+  border-radius: 10px;
+  margin: 15px;
 }
 
 /* Modal */
