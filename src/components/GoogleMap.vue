@@ -97,13 +97,24 @@ export default {
             });
 
           // 吹き出しを表示
-          console.log("infowindo")
+          var content = 
+            "<link href='https://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet'/>" + 
+            "<div class='ginfo-wrapper'>" +
+              "<div class='ginfo-title'>" + 
+                "<span class='material-icons ginfo-title-icon'>pin_drop</span>" +
+                "<span>" + spot.spot_name + "</span>" + 
+              "</div>" + 
+
+              "<div class='ginfo-text'>" + 
+                "<span class='material-icons ginfo-text-icon'>book</span>" +
+                "<span>" + spot.text + "</span>" + 
+              "</div>" + 
+
+              "<img id='" + spot.photo_key + "' class='ginfo-img' src='' width=150>" + 
+            "</div>"
 
           var infowindow = new window.google.maps.InfoWindow({
-            content:
-              "<h3>名称：" + spot.spot_name + "</h3><br>" + 
-              "<p>説明：" + spot.text + "</p><br>" + 
-              "<img id='" + spot.photo_key + "' src='' width=150>",
+            content: content,
             maxWidth: 300
           });
           infowindow.open(this.map, marker);

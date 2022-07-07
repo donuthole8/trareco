@@ -10,7 +10,6 @@
   --link-color: #42b983;
 }
 
-
 /* App.vue */
 body {
   background-color: var(--background-color);
@@ -38,7 +37,6 @@ a {
 p {
   padding: 10px;
 }
-
 .wrapper {
   padding: 10px;
   margin-bottom: 10px;
@@ -86,6 +84,64 @@ p {
   border-radius: 10px;
   height: 500px;
   width: 750px;
+}
+
+.gm-style-iw {
+  background-color: var(--background-color) !important;
+  padding: 0px !important;
+  margin: 0px !important;
+}
+
+.gm-style-iw-d {
+  padding: 0px !important;
+  margin: 0px !important;
+  overflow: auto !important;
+}
+
+.gm-style-iw-t::after {
+  background-color: var(--background-color) !important;
+  background: var(--background-color) !important;
+}
+
+.gm-ui-hover-effect {
+  background-color: var(--second-color);
+}
+
+.ginfo-wrapper {
+  max-width: 200px;
+  background-color: var(--background-color);
+}
+
+.ginfo-title {
+  background-color: var(--second-color);
+  color: var(--text-color3);
+  padding: 10px;
+  margin: 0px;
+  font-size: large;
+  font-weight: bold;
+}
+
+.giinfo-title-icon {
+  color: var(--text-color3);
+  background-color: var(--second-color);
+  width: 20px;
+  display: flex;
+}
+
+.ginfo-text {
+  color: var(--text-color1);
+  padding: 10px;
+}
+
+.giinfo-text-icon {
+  color: var(--text-color1);
+  background-color: var(--background-color);
+  width: 10px !important;
+  display: flex;
+}
+
+.ginfo-img {
+  border-radius: 5px;
 }
 
 /* Modal */
@@ -269,3 +325,4 @@ p {
   border-radius: 10px 0px 10px 0px;
   cursor: pointer;
 }
+

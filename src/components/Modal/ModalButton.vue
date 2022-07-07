@@ -10,6 +10,7 @@ export default {
       childModalFlg: this.modalFlg,
     };
   },
+  
   methods: {
     modalClick() {
       this.childModalFlg = !this.modalFlg;
